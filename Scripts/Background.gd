@@ -3,7 +3,7 @@ class_name BGManager
 
 var log = Logger.new("BG")
 
-@onready var tex_rect = $CanvasLayer/TextureRect
+@onready var tex_sprite = $TextureSprite
 
 @export var bg_texture: Texture
 
@@ -11,7 +11,7 @@ var bgs:Dictionary = {}
 
 func _ready():
 	if bg_texture:
-		tex_rect.texture = bg_texture
+		tex_sprite.texture = bg_texture
 	else:
 		set_bg_color(Color(0.5,0.5,0.5))
 	
@@ -41,11 +41,11 @@ func _loadbg() -> bool:
 	return true
 
 func set_bg(name:String):
-	tex_rect.texture = bgs[name]
+	tex_sprite.texture = bgs[name]
 
 func set_bg_color(color:Color):
 	var new_texture:GradientTexture1D = GradientTexture1D.new()
 	var new_gradient:Gradient = Gradient.new()
 	new_gradient.colors = [color]
 	new_texture.gradient = new_gradient
-	tex_rect.texture = new_texture
+	tex_sprite.texture = new_texture

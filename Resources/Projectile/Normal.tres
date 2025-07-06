@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ProjectileData" load_steps=2 format=3 uid="uid://copqqmfidhhy5"]
+
+[ext_resource type="Script" uid="uid://cyd1bp18kso8d" path="res://Scripts/ResourceTemplate/ProjectileData.gd" id="1_2orid"]
+
+[resource]
+script = ExtResource("1_2orid")
+speed = 300
+damage = 10
+type = "Normal"
+metadata/_custom_type_script = "uid://cyd1bp18kso8d"

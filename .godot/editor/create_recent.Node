@@ -1,4 +1,8 @@
+Sprite2D
+Control
+AnimatedSprite2D
 Camera2D
+CharacterBody2D
 TextureRect
 Label
 Button
@@ -6,5 +10,4 @@ Node
 Node2D
 AudioStreamPlayer2D
 CanvasLayer
-Control
 ColorRect

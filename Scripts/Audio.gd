@@ -5,7 +5,7 @@ class_name AudioManager
 var log = Logger.new("Audio")
 
 @onready var sound_path = $Continuous
-@onready var oneshot_sound_path =$Oneshot
+@onready var oneshot_sound_path = $Oneshot
 
 var sounds:= {}
 var oneshot_sounds:= {}
@@ -23,8 +23,12 @@ func _ready() -> void:
 	_load_audio_scenes("res://Scenes/Audio/Continuous/", sound_scenes)
 	_load_audio_scenes("res://Scenes/Audio/Oneshot/", oneshot_sound_scenes)
 	
-	if !sound_scenes.is_empty(): log.p("Loaded continuous sounds: %s" % sound_scenes.keys())
-	if !oneshot_sound_scenes.is_empty(): log.p("Loaded oneshot sounds: %s" % oneshot_sound_scenes.keys())
+	var log_aud = ""
+	for aud in sound_scenes.keys(): log_aud += "%s, " % aud
+	if !sound_scenes.is_empty(): log.p("Loaded continuous sounds: %s" % log_aud)
+	log_aud = ""
+	for aud in oneshot_sound_scenes.keys(): log_aud += "%s, " % aud
+	if !oneshot_sound_scenes.is_empty(): log.p("Loaded oneshot sounds: %s" % log_aud)
 
 func _init_audios():
 	if sound_path:

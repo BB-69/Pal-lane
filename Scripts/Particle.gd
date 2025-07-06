@@ -5,7 +5,7 @@ class_name ParticleManager
 var log = Logger.new("Particle")
 
 @onready var particle_path = $Continuous
-@onready var oneshot_particle_path =$Oneshot
+@onready var oneshot_particle_path = $Oneshot
 
 var particles:= {}
 var oneshot_particles:= {}
@@ -23,8 +23,12 @@ func _ready() -> void:
 	_load_particle_scenes("res://Scenes/Particle/Continuous/", particle_scenes)
 	_load_particle_scenes("res://Scenes/Particle/Oneshot/", oneshot_particle_scenes)
 	
-	if !particle_scenes.is_empty(): log.p("Loaded continuous particles: %s" % particle_scenes.keys())
-	if !oneshot_particle_scenes.is_empty(): log.p("Loaded oneshot particles: %s" % oneshot_particle_scenes.keys())
+	var log_ptc = ""
+	for ptc in particle_scenes.keys(): log_ptc += "%s, " % ptc
+	if !particle_scenes.is_empty(): log.p("Loaded continuous particles: %s" % log_ptc)
+	log_ptc = ""
+	for ptc in oneshot_particle_scenes.keys(): log_ptc += "%s, " % ptc
+	if !oneshot_particle_scenes.is_empty(): log.p("Loaded oneshot particles: %s" % log_ptc)
 
 func _init_particles():
 	if particle_path:

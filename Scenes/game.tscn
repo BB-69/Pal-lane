@@ -1,12 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://co11xkq7tuobi"]
+[gd_scene load_steps=9 format=3 uid="uid://co11xkq7tuobi"]
 
 [ext_resource type="Script" uid="uid://d07hntwlrs18a" path="res://Scripts/SceneSpecific/Game.gd" id="1_wowpa"]
+[ext_resource type="PackedScene" uid="uid://51ypa2oakss6" path="res://Scenes/camera.tscn" id="2_3dryh"]
 [ext_resource type="PackedScene" uid="uid://ckbo4sl81dvdw" path="res://Scenes/bg.tscn" id="3_i6g32"]
 [ext_resource type="Script" uid="uid://16pduvtg2fbu" path="res://Scripts/Score.gd" id="4_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://c3aah6672ic1q" path="res://Scenes/Entity/player.tscn" id="4_wowpa"]
 
 [sub_resource type="Gradient" id="Gradient_wowpa"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.686275, 0.129412, 0.603922, 1)
+colors = PackedColorArray(0.568627, 0, 0.717647, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_i6g32"]
 gradient = SubResource("Gradient_wowpa")
@@ -17,11 +19,15 @@ font_size = 48
 [node name="Game" type="Node2D"]
 script = ExtResource("1_wowpa")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
+[node name="Camera2D" parent="." instance=ExtResource("2_3dryh")]
 
 [node name="BG" parent="." instance=ExtResource("3_i6g32")]
 bg_texture = SubResource("GradientTexture1D_i6g32")
+
+[node name="Player" parent="." node_paths=PackedStringArray("Game") instance=ExtResource("4_wowpa")]
+position = Vector2(576, 524)
+Game = NodePath("..")
+lane_positions = Array[Vector2]([Vector2(-200, 200), Vector2(0, 200), Vector2(200, 200)])
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 100

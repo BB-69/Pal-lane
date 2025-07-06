@@ -1,0 +1,17 @@
+res://Scenes/Entity/player.tscn
+res://Scripts/ResourceTemplate/ProjectileData.gd
+res://Scripts/SceneSpecific/Game.gd
+res://Scripts/Audio.gd
+res://Scripts/Particle.gd
+res://Scenes/main.tscn
+res://Scenes/game.tscn
+res://Scenes/result.tscn
+res://Scenes/loader.tscn
+res://Scenes/bg.tscn
+res://Scenes/audio_manager.tscn
+res://Scenes/particle_manager.tscn
+res://Scripts/Camera.gd
+res://Scripts/Entity/player.gd
+res://Scripts/Global/Statistics.gd
+res://Scenes/camera.tscn
+res://Scripts/Background.gd

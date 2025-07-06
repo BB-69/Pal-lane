@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbrkdefl77xl4"]
+[gd_scene load_steps=6 format=3 uid="uid://dbrkdefl77xl4"]
 
 [ext_resource type="Script" uid="uid://bru030l4g4vn1" path="res://Scripts/SceneSpecific/Main.gd" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://51ypa2oakss6" path="res://Scenes/camera.tscn" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://ckbo4sl81dvdw" path="res://Scenes/bg.tscn" id="2_bo1nx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jjvhh"]
@@ -12,8 +13,7 @@ font_size = 48
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jjgbg")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
+[node name="Camera2D" parent="." instance=ExtResource("2_8gbba")]
 
 [node name="BG" parent="." instance=ExtResource("2_bo1nx")]
 

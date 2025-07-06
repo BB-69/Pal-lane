@@ -3,10 +3,15 @@ class_name GameManager
 
 var log = Logger.new("Game")
 
+var fever_gauge = 0
+signal fever_started()
+signal fever_ended()
+var max_lane = 3
+
 func _ready():
 	Stat.Gm = self
 
-signal add_score
+signal add_score(score)
 
 func _unhandled_input(event):
 	if Stat.loading: return
