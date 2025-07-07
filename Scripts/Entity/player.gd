@@ -1,5 +1,8 @@
-extends Node2D
+extends CharacterBody2D
 class_name PlayerClass
+@export var base: BaseComponent
+@export var mov: MovementComponent
+
 @export var Game: GameManager
 
 # Inputs
@@ -30,6 +33,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_update_statistics()
+	
+	mov._physics_update(delta)
+	move_and_slide()
 
 
 

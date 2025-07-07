@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3aah6672ic1q"]
+[gd_scene load_steps=8 format=3 uid="uid://c3aah6672ic1q"]
 
 [ext_resource type="Script" uid="uid://dkw520xjw71f7" path="res://Scripts/Entity/player.gd" id="1_re1fo"]
 [ext_resource type="PackedScene" uid="uid://coj6ugnk1647e" path="res://Scenes/EntityBase/base.tscn" id="2_hw5wg"]
@@ -20,10 +20,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Node2D" groups=["Player"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hw5wg"]
+radius = 45.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("base", "mov") groups=["Player"]]
+collision_mask = 2
+motion_mode = 1
 script = ExtResource("1_re1fo")
+base = NodePath("Base")
+mov = NodePath("Movement")
 
 [node name="Base" parent="." instance=ExtResource("2_hw5wg")]
+tag = "player"
 is_player = true
 
 [node name="Movement" parent="." instance=ExtResource("3_2roui")]
@@ -32,3 +40,6 @@ center_offset_y = 250.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_hw5wg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hw5wg")

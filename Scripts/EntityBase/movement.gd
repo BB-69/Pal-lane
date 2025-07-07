@@ -1,6 +1,6 @@
 extends Node
 class_name MovementComponent
-var char_body: PlayerClass
+var char_body: CharacterBody2D
 
 func get_axis(input1:String, input2:String, continuous_press:bool) -> int:
 	var axis:= 0
@@ -8,7 +8,7 @@ func get_axis(input1:String, input2:String, continuous_press:bool) -> int:
 	if char_body.get_input(continuous_press)[input2]: axis += 1
 	return axis
 
-@export var speed: int = 20
+@export var speed: float = 20.0
 @export var center_offset_y: float = 0.0
 @export var lane_positions: Array[Vector2] = [Vector2.ZERO, Vector2.ZERO, Vector2.ZERO]
 
@@ -22,7 +22,7 @@ var current_lane:
 func _ready() -> void:
 	if get_parent(): char_body = get_parent()
 
-func _physics_process(delta: float) -> void:
+func _physics_update(delta: float) -> void:
 	var lane_change = get_axis("move_left", "move_right", false)
 	current_lane += lane_change*2 if Input.is_action_pressed("Move-Boost") else lane_change
 	move_lane(delta, current_lane)

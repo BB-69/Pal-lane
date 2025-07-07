@@ -21,8 +21,10 @@ var Rs: ResultManager
 var Sc: ScoreManager
 
 # === Entity ===
-var Player: Node2D
-var Enemy: Array[Node2D] = []
+var Player: CharacterBody2D
+# { id : self }
+var Enemy: Dictionary = {}
+var Projectile: Dictionary = {}
 
 # === Data ===
 var score: int

@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://7latq412iec5"]
+
+[ext_resource type="Script" uid="uid://bcwxvd4vqok4c" path="res://Scripts/Projectile/Missile.gd" id="1_5avfi"]
+[ext_resource type="PackedScene" uid="uid://coj6ugnk1647e" path="res://Scenes/EntityBase/base.tscn" id="1_6xj4p"]
+[ext_resource type="PackedScene" uid="uid://biajsp1h0tfmi" path="res://Scenes/ProjectileBase/projectile_movement.tscn" id="2_6xj4p"]
+[ext_resource type="Resource" uid="uid://copqqmfidhhy5" path="res://Resources/Projectile/Normal.tres" id="2_u6wvx"]
+[ext_resource type="Texture2D" uid="uid://bmxl4s8g2a4m1" path="res://Assets/Sprite/Game/Missiles/spaceMissiles_001.png" id="3_u6wvx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_01rop"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_u6wvx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xpikx"]
+radius = 15.0
+
+[node name="Missile" type="CharacterBody2D" node_paths=PackedStringArray("base", "pmov")]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_5avfi")
+base = NodePath("Base")
+pmov = NodePath("ProjectileMovement")
+stat = ExtResource("2_u6wvx")
+
+[node name="Base" parent="." instance=ExtResource("1_6xj4p")]
+tag = "projectile"
+
+[node name="ProjectileMovement" parent="." instance=ExtResource("2_6xj4p")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_01rop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xpikx")
