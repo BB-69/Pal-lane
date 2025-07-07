@@ -1,6 +1,8 @@
-Node
-CharacterBody2D
 CollisionShape2D
+Area2D
+CharacterBody2D
+AnimatableBody2D
+Node
 Sprite2D
 Control
 AnimatedSprite2D
@@ -10,5 +12,3 @@ Label
 Button
 Node2D
 AudioStreamPlayer2D
-CanvasLayer
-ColorRect

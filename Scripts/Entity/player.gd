@@ -2,6 +2,9 @@ extends CharacterBody2D
 class_name PlayerClass
 @export var base: BaseComponent
 @export var mov: MovementComponent
+@export var act: ActionComponent
+@export var col: CollisionShape2D
+@export var hurt: Area2D
 
 @export var Game: GameManager
 
@@ -36,6 +39,13 @@ func _physics_process(delta: float) -> void:
 	
 	mov._physics_update(delta)
 	move_and_slide()
+	
+	process_action()
+
+func process_action():
+	if Input.is_action_just_pressed("Launch"): act.get_action("Launch").execute(self, {
+		"rotation": 0
+	})
 
 
 

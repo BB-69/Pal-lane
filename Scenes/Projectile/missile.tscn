@@ -1,31 +1,42 @@
-[gd_scene load_steps=8 format=3 uid="uid://7latq412iec5"]
+[gd_scene load_steps=9 format=3 uid="uid://7latq412iec5"]
 
 [ext_resource type="Script" uid="uid://bcwxvd4vqok4c" path="res://Scripts/Projectile/Missile.gd" id="1_5avfi"]
-[ext_resource type="PackedScene" uid="uid://coj6ugnk1647e" path="res://Scenes/EntityBase/base.tscn" id="1_6xj4p"]
+[ext_resource type="PackedScene" uid="uid://coj6ugnk1647e" path="res://Scenes/EntityBase/base_component.tscn" id="1_6xj4p"]
 [ext_resource type="PackedScene" uid="uid://biajsp1h0tfmi" path="res://Scenes/ProjectileBase/projectile_movement.tscn" id="2_6xj4p"]
 [ext_resource type="Resource" uid="uid://copqqmfidhhy5" path="res://Resources/Projectile/Normal.tres" id="2_u6wvx"]
 [ext_resource type="Texture2D" uid="uid://bmxl4s8g2a4m1" path="res://Assets/Sprite/Game/Missiles/spaceMissiles_001.png" id="3_u6wvx"]
+[ext_resource type="Texture2D" uid="uid://ckn0m8n0nwhcm" path="res://Assets/Sprite/Game/Missiles/spaceMissiles_002.png" id="5_01rop"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_01rop"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("5_01rop")
+}],
+"loop": true,
+"name": &"Golden",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("3_u6wvx")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Normal",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xpikx"]
 radius = 15.0
 
-[node name="Missile" type="CharacterBody2D" node_paths=PackedStringArray("base", "pmov")]
+[node name="Missile" type="CharacterBody2D" node_paths=PackedStringArray("base", "pmov", "aspr", "col")]
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_5avfi")
 base = NodePath("Base")
 pmov = NodePath("ProjectileMovement")
+aspr = NodePath("AnimatedSprite2D")
+col = NodePath("CollisionShape2D")
 stat = ExtResource("2_u6wvx")
 
 [node name="Base" parent="." instance=ExtResource("1_6xj4p")]
@@ -36,6 +47,7 @@ tag = "projectile"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_01rop")
+animation = &"Normal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_xpikx")

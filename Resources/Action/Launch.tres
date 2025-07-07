@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LaunchAction" load_steps=3 format=3 uid="uid://b5ptb35gvesf0"]
+
+[ext_resource type="Script" uid="uid://y2t7hdv4v11" path="res://Resources/Action/Launch.gd" id="1_2wl0j"]
+[ext_resource type="PackedScene" uid="uid://7latq412iec5" path="res://Scenes/Projectile/missile.tscn" id="1_mo2ua"]
+
+[resource]
+script = ExtResource("1_2wl0j")
+missile_scene = ExtResource("1_mo2ua")
+action_name = "Launch"
+metadata/_custom_type_script = "uid://y2t7hdv4v11"

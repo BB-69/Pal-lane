@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://14i6skgyucqh"]
+
+[ext_resource type="Script" uid="uid://b01bdwbat5vlr" path="res://Scripts/EntityBase/ActionComponent.gd" id="1_77dkd"]
+
+[node name="Action" type="Node"]
+script = ExtResource("1_77dkd")
