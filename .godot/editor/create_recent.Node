@@ -1,3 +1,4 @@
+Node
 Sprite2D
 Control
 AnimatedSprite2D
@@ -6,7 +7,6 @@ CharacterBody2D
 TextureRect
 Label
 Button
-Node
 Node2D
 AudioStreamPlayer2D
 CanvasLayer

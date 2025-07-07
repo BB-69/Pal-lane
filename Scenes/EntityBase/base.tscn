@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://coj6ugnk1647e"]
+
+[ext_resource type="Script" uid="uid://emacmmg5ycui" path="res://Scripts/EntityBase/base.gd" id="1_5dxu7"]
+
+[node name="Base" type="Node"]
+script = ExtResource("1_5dxu7")

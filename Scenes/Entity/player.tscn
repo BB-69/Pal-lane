@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3aah6672ic1q"]
+[gd_scene load_steps=7 format=3 uid="uid://c3aah6672ic1q"]
 
 [ext_resource type="Script" uid="uid://dkw520xjw71f7" path="res://Scripts/Entity/player.gd" id="1_re1fo"]
+[ext_resource type="PackedScene" uid="uid://coj6ugnk1647e" path="res://Scenes/EntityBase/base.tscn" id="2_hw5wg"]
 [ext_resource type="Texture2D" uid="uid://bmxwcmb1ivxn8" path="res://Assets/Sprite/Game/Circle1.png" id="2_odi8b"]
+[ext_resource type="PackedScene" uid="uid://o8bbqfgyfauk" path="res://Scenes/EntityBase/movement.tscn" id="3_2roui"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2tr3c"]
 atlas = ExtResource("2_odi8b")
@@ -18,8 +20,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" groups=["Player"]]
 script = ExtResource("1_re1fo")
 
+[node name="Base" parent="." instance=ExtResource("2_hw5wg")]
+is_player = true
+
+[node name="Movement" parent="." instance=ExtResource("3_2roui")]
+center_offset_y = 250.0
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_hw5wg")

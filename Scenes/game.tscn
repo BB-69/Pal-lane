@@ -8,7 +8,7 @@
 
 [sub_resource type="Gradient" id="Gradient_wowpa"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.568627, 0, 0.717647, 1)
+colors = PackedColorArray(0.835294, 0.364706, 0.596078, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_i6g32"]
 gradient = SubResource("Gradient_wowpa")
@@ -27,7 +27,6 @@ bg_texture = SubResource("GradientTexture1D_i6g32")
 [node name="Player" parent="." node_paths=PackedStringArray("Game") instance=ExtResource("4_wowpa")]
 position = Vector2(576, 524)
 Game = NodePath("..")
-lane_positions = Array[Vector2]([Vector2(-200, 200), Vector2(0, 200), Vector2(200, 200)])
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 100

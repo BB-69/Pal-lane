@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://o8bbqfgyfauk"]
+
+[ext_resource type="Script" uid="uid://chx6slne7awga" path="res://Scripts/EntityBase/movement.gd" id="1_cx2tb"]
+
+[node name="Movement" type="Node"]
+script = ExtResource("1_cx2tb")
+lane_positions = Array[Vector2]([Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0)])
