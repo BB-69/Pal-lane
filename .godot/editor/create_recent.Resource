@@ -1,3 +1,4 @@
+ProjectileStorage
 LaunchAction
 Resource
 ProjectileData

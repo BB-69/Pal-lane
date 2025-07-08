@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3aah6672ic1q"]
+[gd_scene load_steps=13 format=3 uid="uid://c3aah6672ic1q"]
 
 [ext_resource type="Script" uid="uid://dkw520xjw71f7" path="res://Scripts/Entity/Player.gd" id="1_re1fo"]
 [ext_resource type="PackedScene" uid="uid://coj6ugnk1647e" path="res://Scenes/EntityBase/base_component.tscn" id="2_hw5wg"]
 [ext_resource type="Texture2D" uid="uid://bmxwcmb1ivxn8" path="res://Assets/Sprite/Game/Circle1.png" id="2_odi8b"]
+[ext_resource type="Resource" uid="uid://cwp2iuu47n3uv" path="res://Resources/Projectile/ProjectileStorage.tres" id="2_ox502"]
 [ext_resource type="PackedScene" uid="uid://o8bbqfgyfauk" path="res://Scenes/EntityBase/movement_component.tscn" id="3_2roui"]
 [ext_resource type="PackedScene" uid="uid://14i6skgyucqh" path="res://Scenes/EntityBase/action_component.tscn" id="4_2roui"]
 [ext_resource type="Script" uid="uid://dq8dlxwoubotf" path="res://Scripts/ResourceTemplate/ActionData.gd" id="5_7lf8o"]
@@ -38,6 +39,7 @@ mov = NodePath("Movement")
 act = NodePath("Action")
 col = NodePath("CollisionShape2D")
 hurt = NodePath("HurtBox")
+total_missile = ExtResource("2_ox502")
 
 [node name="Base" parent="." instance=ExtResource("2_hw5wg")]
 tag = "player"

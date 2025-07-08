@@ -23,7 +23,7 @@ func get_input(continuous_press:bool):
 		}
 		_: return null
 
-@export var parry_cooldown = 0.5
+@export_group("Stat")
 @export var max_hp = 5
 
 var current_hp = max_hp
@@ -33,6 +33,8 @@ var buff_stacks = 0
 
 func _ready() -> void:
 	_init_statics()
+	
+	init_action_time()
 
 func _physics_process(delta: float) -> void:
 	_update_statistics()
@@ -40,12 +42,29 @@ func _physics_process(delta: float) -> void:
 	mov._physics_update(delta)
 	move_and_slide()
 	
-	process_action()
+	process_action(delta)
 
-func process_action():
-	if Input.is_action_just_pressed("Launch"): act.get_action("Launch").execute(self, {
-		"rotation": 0
-	})
+@export_group("Action")
+var time: float = 0.0
+var action_time: Dictionary[String, float] = {}
+@export var cooldowns: Dictionary[String, float] = {
+	"Launch": 0.25,
+	"Parry": 0.5,
+}
+@export var total_missile: ProjectileStorage
+
+func init_action_time():
+	for action_name in cooldowns.keys():
+		action_time[action_name] = 0.0
+
+func process_action(delta):
+	time += delta
+	var action_names = cooldowns.keys()
+	for action_name in action_names: if (time - action_time[action_name] > cooldowns[action_name]) and Input.is_action_just_pressed(action_name):
+		action_time[action_name] = time
+		act.get_action(action_name).execute(self, {
+			"rotation": 0
+		})
 
 
 
