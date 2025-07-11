@@ -1,9 +1,11 @@
-res://Resources/Projectile
-res://Assets/Sprite/Game/Missiles
 res://Scripts/Helper
-res://Scenes/EntityBase
-res://Resources/Action
 res://Scripts/EntityBase
+res://Scripts/Entity
+res://Scenes/Entity
+res://Resources/Projectile
+res://Resources/Action
+res://Assets/Sprite/Game/Missiles
+res://Scenes/EntityBase
 res://Scripts/Projectile
 res://Scripts/ProjectileBase
 res://Scenes/Projectile
@@ -11,8 +13,6 @@ res://Assets/Sprite/Game
 res://Scenes
 res://Scripts
 res://Resources
-res://Scripts/Entity
-res://Scenes/Entity
 res://Assets/Sprite/UI
 res://Assets/Font
 D:/TM Folder/Program-and-Projects/Godot/Projects/_godot_template/Exports/Windows

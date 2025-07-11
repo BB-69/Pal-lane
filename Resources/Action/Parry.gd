@@ -1,12 +1,17 @@
 extends ActionData
 class_name ParryAction
 
+signal parry(actor)
+
 func execute(actor, params = {}):
 	var collided = actor.hurt.get_overlapping_bodies()
-	var missiles: Array = []
-	for obj in collided:
-		if obj.base.tag == "projectile": if obj.stat.type == "Golden": missiles = obj
+	var missiles: Array[ProjectileClass] = []
+	for body in collided:
+		if body.base.tag == "Projectile": if body.stat.type == "Golden": missiles.append(body)
 	
+	var callables: Array[Callable]
 	for missile in missiles:
-		missile.rotation_degrees = 180
-		print("%s#%s parried a missile#%s!" % [actor.name, actor.base.id, missile.base.id])
+		callables.append(Con.c(self, "parry", missile, "_on_parry"))
+	emit_signal("parry", actor)
+	for c in callables:
+		disconnect("parry", c)

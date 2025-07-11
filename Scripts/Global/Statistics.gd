@@ -21,7 +21,7 @@ var Rs: ResultManager
 var Sc: ScoreManager
 
 # === Entity ===
-var Player: CharacterBody2D
+var Player: PlayerClass
 # { id : self }
 var Enemy: Dictionary = {}
 var Projectile: Dictionary = {}
@@ -35,10 +35,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_connect_signals()
 	_set_data_live()
+	
+	check_is_offscreen()
 
 var signal_connected:= false
 func _connect_signals():
 	Con.c(Gm, "add_score", Sc, "add_score")
+	Con.c(Player, "game_over", Gm, "game_over")
+	for e in Enemy.values():
+		Con.c(e, "game_over", Gm, "game_over")
+		Con.c(e, "ascend", Player, "_on_ascend")
+		Con.c(e, "ascend", Gm, "_on_ascend")
 
 func set_loading(loading:bool): self.loading = loading
 
@@ -46,12 +53,16 @@ func _set_data_live():
 	if Sc: score = Sc.score
 
 func is_offscreen(obj) -> bool:
-	if !Camera: return false
-	if abs(obj.global_position.x - Camera.global_position.x) > Screen["Size"].x + 256:
+	if !(Camera and obj): return false
+	if abs(obj.global_position.x - Camera.global_position.x) > Screen["Size"].x*2 + 256:
 		return true
-	if abs(obj.global_position.y - Camera.global_position.y) > Screen["Size"].y + 256:
+	if abs(obj.global_position.y - Camera.global_position.y) > Screen["Size"].y*2 + 256:
 		return true
 	return false
+func check_is_offscreen():
+	for id in Projectile: if is_offscreen(Projectile[id]):
+		Gm.missile_pooler.release_instance(Projectile[id])
+		Projectile.erase(id)
 
 
 

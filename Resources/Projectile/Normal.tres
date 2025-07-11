@@ -4,9 +4,10 @@
 
 [resource]
 script = ExtResource("1_2orid")
-speed = 300.0
-max_speed = 400
-acceleration = 100
+speed = 160.0
+max_speed = 320
+acceleration = 40
 damage = 10
 type = "Normal"
+affection_point = 0
 metadata/_custom_type_script = "uid://cyd1bp18kso8d"

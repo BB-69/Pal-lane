@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ProjectileData" load_steps=2 format=3 uid="uid://b6u4qteiqivse"]
+
+[ext_resource type="Script" uid="uid://cyd1bp18kso8d" path="res://Scripts/ResourceTemplate/ProjectileData.gd" id="1_g77ou"]
+
+[resource]
+script = ExtResource("1_g77ou")
+speed = 225.0
+max_speed = 1000
+acceleration = 375
+damage = -5
+type = "Love"
+affection_point = 10
+metadata/_custom_type_script = "uid://cyd1bp18kso8d"

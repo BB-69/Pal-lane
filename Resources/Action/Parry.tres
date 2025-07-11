@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ParryAction" load_steps=2 format=3 uid="uid://8hu6l8hnvavh"]
+
+[ext_resource type="Script" uid="uid://dsob3udkeo6nv" path="res://Resources/Action/Parry.gd" id="1_oqsog"]
+
+[resource]
+script = ExtResource("1_oqsog")
+action_name = "Parry"
+metadata/_custom_type_script = "uid://dsob3udkeo6nv"

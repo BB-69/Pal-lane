@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqagamdtcdr0l"]
+
+[ext_resource type="Script" uid="uid://lt4pd5cq2j7j" path="res://Scripts/ValueBar.gd" id="1_kv8av"]
+
+[sub_resource type="Gradient" id="Gradient_4jwlr"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.233925, 0.233925, 0.233925, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0ae2n"]
+gradient = SubResource("Gradient_4jwlr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5b3dc"]
+texture = SubResource("GradientTexture1D_0ae2n")
+
+[sub_resource type="Gradient" id="Gradient_lhn5h"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1h0jf"]
+gradient = SubResource("Gradient_lhn5h")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vglfq"]
+texture = SubResource("GradientTexture1D_1h0jf")
+
+[node name="ValueBar" type="Control"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_kv8av")
+value_smoothing = 5.0
+offset = Vector2(0, 96)
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-166, -18, 166, -18, 166, 18, -166, 18)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -12.0
+offset_right = 160.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_5b3dc")
+theme_override_styles/fill = SubResource("StyleBoxTexture_vglfq")
+value = 36.47
+show_percentage = false

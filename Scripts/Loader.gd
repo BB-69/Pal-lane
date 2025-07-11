@@ -18,7 +18,7 @@ func _ready():
 	fade_rect.modulate.a = 1.0
 	loading_icon.show()
 	fade_rect.modulate.a = 1.0
-	change_scene("Game", 0.5, [false, true])
+	change_scene("Main", 0.5, [false, true])
 
 func fade_in(node: Variant, duration: float = 0.5):
 	node.show()

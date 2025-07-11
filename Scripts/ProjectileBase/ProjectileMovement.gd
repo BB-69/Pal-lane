@@ -20,4 +20,4 @@ func _ready() -> void:
 func _physics_update(delta: float) -> void:
 	speed += acceleration * delta
 	speed = min(speed, max_speed)
-	missile.velocity = direction*speed
+	missile.velocity = (direction*speed).rotated(missile.rotation)

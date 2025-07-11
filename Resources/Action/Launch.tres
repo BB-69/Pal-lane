@@ -1,10 +1,21 @@
-[gd_resource type="Resource" script_class="LaunchAction" load_steps=3 format=3 uid="uid://b5ptb35gvesf0"]
+[gd_resource type="Resource" script_class="LaunchAction" load_steps=5 format=3 uid="uid://b5ptb35gvesf0"]
 
 [ext_resource type="Script" uid="uid://y2t7hdv4v11" path="res://Resources/Action/Launch.gd" id="1_2wl0j"]
 [ext_resource type="PackedScene" uid="uid://7latq412iec5" path="res://Scenes/Projectile/missile.tscn" id="1_mo2ua"]
+[ext_resource type="Script" uid="uid://bqcrrptceyix8" path="res://Scripts/ResourceTemplate/ProjectileStorage.gd" id="2_hetx4"]
+
+[sub_resource type="Resource" id="Resource_hetx4"]
+script = ExtResource("2_hetx4")
+total_missile = Dictionary[String, int]({
+"Golden": 0,
+"Love": 0,
+"Normal": 0
+})
+metadata/_custom_type_script = "uid://bqcrrptceyix8"
 
 [resource]
 script = ExtResource("1_2wl0j")
 missile_scene = ExtResource("1_mo2ua")
+missile_storage = SubResource("Resource_hetx4")
 action_name = "Launch"
 metadata/_custom_type_script = "uid://y2t7hdv4v11"

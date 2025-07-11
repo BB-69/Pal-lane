@@ -9,6 +9,7 @@ var spawn_loop_interval: float
 
 var parent_node: Node = null
 var packed_scene: PackedScene
+var temp_pool: Array = []
 var pool: Array = []
 var active_instances: Array = []
 
@@ -18,7 +19,7 @@ var shrink_timer: Timer
 func _init(
 	scene_path: String,
 	initial_size: int = 5,
-	auto_shrink: bool = false,
+	auto_shrink: bool = true,
 	shrink_interval: float = 10.0,
 	spawn_loop_interval: float = 0.0
 ):
@@ -31,11 +32,11 @@ func _init(
 func init(parent: Node):
 	parent_node = parent
 	packed_scene = load(scene_path)
-	
+
 	for i in initial_size:
 		var inst = _create_instance()
-		pool.append(inst)
-	
+		_return_to_pool(inst)
+
 	if auto_shrink:
 		shrink_timer = Timer.new()
 		shrink_timer.wait_time = shrink_interval
@@ -43,8 +44,7 @@ func init(parent: Node):
 		shrink_timer.autostart = true
 		shrink_timer.timeout.connect(_cleanup_unused)
 		parent_node.add_child(shrink_timer)
-	
-	# Setup spawn loop timer
+
 	if spawn_loop_interval > 0.0:
 		spawn_timer = Timer.new()
 		spawn_timer.wait_time = spawn_loop_interval
@@ -56,27 +56,56 @@ func init(parent: Node):
 func _create_instance() -> Node:
 	var inst = packed_scene.instantiate()
 	inst.visible = false
-	parent_node.add_child(inst)
 	return inst
+
+func _return_to_pool(inst: Node):
+	if is_instance_valid(inst):
+		inst.visible = false
+		pool.append(inst)
+
+func _process(_delta):
+	#print("Temp: %s, Pool: %s" % [temp_pool.size(), pool.size()])
+	if temp_pool.size() > 0:
+		for inst in temp_pool:
+			if is_instance_valid(inst):
+				_return_to_pool(inst)
+				temp_pool.erase(inst)
 
 func get_instance() -> Node:
-	var inst: Node = null
-	
-	# If pool has inactive
-	if pool.size() > 0:
-		inst = pool.pop_back()
-	else:
-		inst = _create_instance()
-	
+	var inst = _create_instance()
 	active_instances.append(inst)
+	parent_node.add_child(inst)
 	inst.visible = true
 	return inst
+	
+	"""if pool.is_empty():
+		var inst = _create_instance()
+		active_instances.append(inst)
+		inst.visible = true
+		return inst
+
+	var inst = pool.pop_back()
+	if is_instance_valid(inst):
+		active_instances.append(inst)
+		inst.visible = true
+		return inst
+	else:
+		inst = _create_instance()
+		active_instances.append(inst)
+		inst.visible = true
+		return inst"""
 
 func release_instance(inst: Node):
-	if inst in active_instances:
+	active_instances.erase(inst)
+	inst.queue_free()
+	
+	"""if inst in active_instances:
 		active_instances.erase(inst)
-	inst.visible = false
-	pool.append(inst)
+		var parent = inst.get_parent()
+		parent.remove_child(inst)
+	if is_instance_valid(inst):
+		inst.visible = false
+		temp_pool.append(inst)"""
 
 func _cleanup_unused():
 	while pool.size() > initial_size:

@@ -5,6 +5,7 @@ var log = Logger.new("Result")
 
 @export_group("Result Page")
 @export var final_score_label: Label
+@export var time_lapsed_label: Label
 
 func _ready():
 	Stat.Rs = self
@@ -22,4 +23,5 @@ func _unhandled_input(event):
 func show_result():
 	var d: Dictionary = Data.load_data()
 	
-	final_score_label.text = "Final Score: %s" % d["score"]
+	final_score_label.text = "Your Pal%s: %s" % ["s" if d["total_pal"] > 1 else "", d["total_pal"]]
+	time_lapsed_label.text = "Time Lapsed: %s" % TimeFormat.t(d["time_lapsed"])

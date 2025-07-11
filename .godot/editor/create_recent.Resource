@@ -1,4 +1,5 @@
+ProjectileData
+ParryAction
 ProjectileStorage
 LaunchAction
 Resource
-ProjectileData

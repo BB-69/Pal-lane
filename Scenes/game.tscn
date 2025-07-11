@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://co11xkq7tuobi"]
+[gd_scene load_steps=12 format=3 uid="uid://co11xkq7tuobi"]
 
 [ext_resource type="Script" uid="uid://d07hntwlrs18a" path="res://Scripts/SceneSpecific/Game.gd" id="1_wowpa"]
 [ext_resource type="PackedScene" uid="uid://51ypa2oakss6" path="res://Scenes/camera.tscn" id="2_3dryh"]
 [ext_resource type="PackedScene" uid="uid://ckbo4sl81dvdw" path="res://Scenes/bg.tscn" id="3_i6g32"]
 [ext_resource type="Script" uid="uid://16pduvtg2fbu" path="res://Scripts/Score.gd" id="4_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://c3aah6672ic1q" path="res://Scenes/Entity/player.tscn" id="4_wowpa"]
-[ext_resource type="PackedScene" uid="uid://7latq412iec5" path="res://Scenes/Projectile/missile.tscn" id="5_i6g32"]
+[ext_resource type="PackedScene" uid="uid://dk86blf3s64yr" path="res://Scenes/Entity/enemy.tscn" id="5_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://cqagamdtcdr0l" path="res://Scenes/UI/value_bar.tscn" id="7_v158k"]
 
 [sub_resource type="Gradient" id="Gradient_wowpa"]
 offsets = PackedFloat32Array(0)
@@ -15,10 +16,18 @@ colors = PackedColorArray(0.835294, 0.364706, 0.596078, 1)
 gradient = SubResource("Gradient_wowpa")
 
 [sub_resource type="LabelSettings" id="LabelSettings_v158k"]
-font_size = 48
+font_size = 24
 
-[node name="Game" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_1l0tm"]
+font_size = 36
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("health_bar", "time_lapsed_label", "total_pal_label")]
 script = ExtResource("1_wowpa")
+center_offset_y = -250.0
+lane_positions = Array[Vector2]([Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0)])
+health_bar = NodePath("UI/HUD/HealthBar")
+time_lapsed_label = NodePath("UI/HUD/TimeLabel")
+total_pal_label = NodePath("UI/HUD/TotalPalLabel")
 
 [node name="Camera2D" parent="." instance=ExtResource("2_3dryh")]
 
@@ -29,8 +38,9 @@ bg_texture = SubResource("GradientTexture1D_i6g32")
 position = Vector2(576, 524)
 Game = NodePath("..")
 
-[node name="Missile" parent="." instance=ExtResource("5_i6g32")]
-position = Vector2(575, 442)
+[node name="Enemy" parent="." node_paths=PackedStringArray("Game") instance=ExtResource("5_1l0tm")]
+position = Vector2(576, 124)
+Game = NodePath("..")
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 100
@@ -44,22 +54,58 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="HealthBar" parent="UI/HUD" instance=ExtResource("7_v158k")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_right = -50.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -1.5708
+
 [node name="ScoreLabel" type="Label" parent="UI/HUD"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -240.0
-offset_top = -33.5
-offset_right = 240.0
-offset_bottom = 33.5
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -29.0
+offset_right = 120.0
+grow_vertical = 0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_v158k")
 horizontal_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = 40.0
+offset_right = 308.0
+offset_bottom = 104.0
+grow_vertical = 2
+text = "Time Lapsed: 0"
+label_settings = SubResource("LabelSettings_1l0tm")
+vertical_alignment = 1
+
+[node name="TotalPalLabel" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = 120.0
+offset_right = 192.0
+offset_bottom = 184.0
+grow_vertical = 2
+text = "Pal: 0"
+label_settings = SubResource("LabelSettings_1l0tm")
+vertical_alignment = 1
 
 [node name="ScoreManager" type="Node" parent="." node_paths=PackedStringArray("score_label")]
 script = ExtResource("4_1l0tm")

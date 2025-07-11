@@ -1,0 +1,93 @@
+[gd_scene load_steps=18 format=3 uid="uid://dk86blf3s64yr"]
+
+[ext_resource type="PackedScene" uid="uid://coj6ugnk1647e" path="res://Scenes/EntityBase/base_component.tscn" id="1_g35wj"]
+[ext_resource type="Script" uid="uid://caukvhx6g5046" path="res://Scripts/Entity/Enemy.gd" id="1_td8e2"]
+[ext_resource type="PackedScene" uid="uid://o8bbqfgyfauk" path="res://Scenes/EntityBase/movement_component.tscn" id="2_083xf"]
+[ext_resource type="PackedScene" uid="uid://14i6skgyucqh" path="res://Scenes/EntityBase/action_component.tscn" id="3_td8e2"]
+[ext_resource type="Script" uid="uid://bk5cdbik6xs37" path="res://Scripts/EntityBase/EnemyAIComponent.gd" id="3_tjvji"]
+[ext_resource type="Script" uid="uid://dq8dlxwoubotf" path="res://Scripts/ResourceTemplate/ActionData.gd" id="4_tjvji"]
+[ext_resource type="PackedScene" uid="uid://7latq412iec5" path="res://Scenes/Projectile/missile.tscn" id="5_b1f0i"]
+[ext_resource type="Script" uid="uid://bqcrrptceyix8" path="res://Scripts/ResourceTemplate/ProjectileStorage.gd" id="6_p74e1"]
+[ext_resource type="Script" uid="uid://y2t7hdv4v11" path="res://Resources/Action/Launch.gd" id="7_lr2hk"]
+[ext_resource type="Resource" uid="uid://8hu6l8hnvavh" path="res://Resources/Action/Parry.tres" id="8_ibj7m"]
+[ext_resource type="Texture2D" uid="uid://bmxwcmb1ivxn8" path="res://Assets/Sprite/Game/Circle1.png" id="9_3g43h"]
+
+[sub_resource type="Resource" id="Resource_lrgl7"]
+script = ExtResource("6_p74e1")
+total_missile = Dictionary[String, int]({
+"Golden": 10,
+"Love": 0,
+"Normal": 10
+})
+metadata/_custom_type_script = "uid://bqcrrptceyix8"
+
+[sub_resource type="Resource" id="Resource_gsi3c"]
+script = ExtResource("7_lr2hk")
+missile_scene = ExtResource("5_b1f0i")
+missile_storage = SubResource("Resource_lrgl7")
+action_name = "Launch"
+metadata/_custom_type_script = "uid://y2t7hdv4v11"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tr3c"]
+atlas = ExtResource("9_3g43h")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_amhh4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tr3c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ooa31"]
+radius = 45.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bgfww"]
+radius = 50.0
+height = 150.0
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("base", "ai", "mov", "act", "col", "hurt")]
+rotation = 3.14159
+collision_mask = 0
+script = ExtResource("1_td8e2")
+base = NodePath("Base")
+ai = NodePath("EnemyAI")
+mov = NodePath("Movement")
+act = NodePath("Action")
+col = NodePath("CollisionShape2D")
+hurt = NodePath("HurtBox")
+
+[node name="Base" parent="." instance=ExtResource("1_g35wj")]
+tag = "Enemy"
+
+[node name="EnemyAI" type="Node" parent="."]
+script = ExtResource("3_tjvji")
+
+[node name="Movement" parent="." instance=ExtResource("2_083xf")]
+center_offset_y = -250.0
+
+[node name="Action" parent="." instance=ExtResource("3_td8e2")]
+actions = Array[ExtResource("4_tjvji")]([SubResource("Resource_gsi3c"), ExtResource("8_ibj7m")])
+cooldowns = Dictionary[String, float]({
+"Launch": 0.75,
+"Parry": 0.5
+})
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_amhh4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ooa31")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -50)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bgfww")
