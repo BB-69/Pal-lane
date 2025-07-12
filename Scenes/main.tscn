@@ -14,8 +14,6 @@ gradient = SubResource("Gradient_wowpa")
 
 [sub_resource type="LabelSettings" id="LabelSettings_jjvhh"]
 font_size = 48
-outline_size = 14
-outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("bg", "info_label")]
 script = ExtResource("1_jjgbg")

@@ -27,25 +27,14 @@ func _on_heart_swirl(obj):
 	particle.global_position = obj.global_position
 	ptc.group_emit_particle(particle)
 
-func _on_heart_explode(obj):
-	var particle = ptc.get_particle("heart_explode")
-	particle.global_position = obj.global_position
-	ptc.group_emit_particle(particle)
-
 func _on_slash(obj):
 	var particle = ptc.get_particle("slash")
-	var p0 = particle.get_child(0)
-	var p1 = particle.get_child(1)
-	
 	particle.global_position = obj.global_position
-	p0.position.x = 0
-	p1.position.x = 0
-	p0.emitting = true
-	p1.emitting = true
+	particle.rotation_degrees = -45.0
+	
+	ptc.set_particle_childs(particle, true)
 	var tween = create_tween()
-	tween.tween_property(p0, "position:x", -75.0, 0.1)
-	tween.parallel().tween_property(p1, "position:x", 75.0, 0.1)
+	tween.tween_property(particle, "rotation_degrees", 45.0, 0.2)
 	await tween.finished
-	await get_tree().create_timer(0.05).timeout
-	p0.emitting = false
-	p1.emitting = false
+	await get_tree().create_timer(0.1).timeout
+	ptc.set_particle_childs(particle, false)

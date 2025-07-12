@@ -31,6 +31,7 @@ func _ready():
 	bottom_rect.modulate.a = 1.0
 	
 	loading_icon.hide()
+	fade_rect.modulate.a = 0.0
 	change_scene("Main", 0.8, [false, true])
 
 func slide_in(duration: float = 0.5):

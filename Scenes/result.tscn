@@ -11,25 +11,17 @@ colors = PackedColorArray(0.301759, 0.633148, 0.425199, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_dj5nj"]
 gradient = SubResource("Gradient_37uq0")
 
-[sub_resource type="LabelSettings" id="LabelSettings_37uq0"]
-font_size = 64
-outline_size = 16
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_dj5nj"]
-font_size = 48
-outline_size = 14
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_knq36"]
-font_size = 36
-outline_size = 12
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_4drmf"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_1b72g"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_37uq0"]
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_oe7ho"]
 font_size = 40
-outline_size = 16
-outline_color = Color(0, 0, 0, 1)
 
 [node name="Result" type="Node2D" node_paths=PackedStringArray("final_score_label", "time_lapsed_label")]
 script = ExtResource("1_dj5nj")
@@ -66,9 +58,8 @@ offset_right = 240.0
 offset_bottom = -210.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 0.9)
 text = "GAME OVER"
-label_settings = SubResource("LabelSettings_37uq0")
+label_settings = SubResource("LabelSettings_4drmf")
 horizontal_alignment = 1
 
 [node name="FinalScoreLabel" type="Label" parent="UI/HUD"]
@@ -79,14 +70,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -237.0
-offset_top = -78.0
+offset_top = -128.0
 offset_right = 243.0
-offset_bottom = -11.0
+offset_bottom = -61.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 0.9)
 text = "Your Pal: 0"
-label_settings = SubResource("LabelSettings_dj5nj")
+label_settings = SubResource("LabelSettings_1b72g")
 horizontal_alignment = 1
 
 [node name="TimeLapsedLabel" type="Label" parent="UI/HUD"]
@@ -97,31 +87,28 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -267.0
-offset_top = 6.0
+offset_top = -44.0
 offset_right = 273.0
-offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 0.9)
 text = "Time Lapsed: 0.00s"
-label_settings = SubResource("LabelSettings_knq36")
+label_settings = SubResource("LabelSettings_37uq0")
 horizontal_alignment = 1
 
 [node name="InfoLabel" type="Label" parent="UI/HUD"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = -416.0
-offset_top = -125.0
+offset_top = 112.0
 offset_right = 416.0
-offset_bottom = -12.0
+offset_bottom = 225.0
 grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(1, 0.9)
+grow_vertical = 2
 text = "Press [Enter] to Restart
 Press [Esc] to go back to Main Menu"
-label_settings = SubResource("LabelSettings_4drmf")
+label_settings = SubResource("LabelSettings_oe7ho")
 horizontal_alignment = 1

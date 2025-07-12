@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c3aah6672ic1q"]
+[gd_scene load_steps=17 format=3 uid="uid://c3aah6672ic1q"]
 
 [ext_resource type="Script" uid="uid://dkw520xjw71f7" path="res://Scripts/Entity/Player.gd" id="1_re1fo"]
 [ext_resource type="PackedScene" uid="uid://coj6ugnk1647e" path="res://Scenes/EntityBase/base_component.tscn" id="2_hw5wg"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://14i6skgyucqh" path="res://Scenes/EntityBase/action_component.tscn" id="4_2roui"]
 [ext_resource type="Script" uid="uid://dq8dlxwoubotf" path="res://Scripts/ResourceTemplate/ActionData.gd" id="5_d8htt"]
 [ext_resource type="PackedScene" uid="uid://7latq412iec5" path="res://Scenes/Projectile/missile.tscn" id="6_20bu7"]
-[ext_resource type="FontFile" uid="uid://cim26588xl5xb" path="res://Assets/Font/Play-Bold.ttf" id="11_iy3c6"]
 [ext_resource type="Script" uid="uid://y2t7hdv4v11" path="res://Resources/Action/Launch.gd" id="12_u7ssx"]
 [ext_resource type="Script" uid="uid://bqcrrptceyix8" path="res://Scripts/ResourceTemplate/ProjectileStorage.gd" id="13_ejgra"]
 [ext_resource type="Resource" uid="uid://8hu6l8hnvavh" path="res://Resources/Action/Parry.tres" id="14_b8n5g"]
@@ -16,7 +15,7 @@
 script = ExtResource("13_ejgra")
 total_missile = Dictionary[String, int]({
 "Golden": 0,
-"Love": 0,
+"Love": 10,
 "Normal": 0
 })
 metadata/_custom_type_script = "uid://bqcrrptceyix8"
@@ -43,11 +42,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_gpwe1"]
-font = ExtResource("11_iy3c6")
-font_size = 64
-font_color = Color(0, 0, 0, 1)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_hw5wg"]
 radius = 45.0
 
@@ -55,13 +49,12 @@ radius = 45.0
 radius = 50.0
 height = 150.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("base", "mov", "act", "aspr", "col", "hurt") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("base", "mov", "act", "col", "hurt") groups=["Player"]]
 collision_mask = 0
 script = ExtResource("1_re1fo")
 base = NodePath("Base")
 mov = NodePath("Movement")
 act = NodePath("Action")
-aspr = NodePath("AnimatedSprite2D")
 col = NodePath("CollisionShape2D")
 hurt = NodePath("HurtBox")
 
@@ -74,32 +67,10 @@ center_offset_y = 250.0
 
 [node name="Action" parent="." instance=ExtResource("4_2roui")]
 actions = Array[ExtResource("5_d8htt")]([SubResource("Resource_laott"), ExtResource("14_b8n5g")])
-cooldowns = Dictionary[String, float]({
-"Launch": 2.5,
-"Parry": 0.75
-})
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_hw5wg")
-
-[node name="Label" type="Label" parent="AnimatedSprite2D"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -84.0
-offset_top = -73.5
-offset_right = -44.0
-offset_bottom = -54.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-text = "P"
-label_settings = SubResource("LabelSettings_gpwe1")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hw5wg")
