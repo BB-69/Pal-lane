@@ -1,21 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbrkdefl77xl4"]
+[gd_scene load_steps=8 format=3 uid="uid://dbrkdefl77xl4"]
 
 [ext_resource type="Script" uid="uid://bru030l4g4vn1" path="res://Scripts/SceneSpecific/Main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://51ypa2oakss6" path="res://Scenes/camera.tscn" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://ckbo4sl81dvdw" path="res://Scenes/bg.tscn" id="2_bo1nx"]
+[ext_resource type="LabelSettings" uid="uid://do30q52cxvoh5" path="res://Assets/FontSetting/title_text.tres" id="4_jjvhh"]
+
+[sub_resource type="Gradient" id="Gradient_wowpa"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.780392, 0.309804, 0.533333, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i6g32"]
+gradient = SubResource("Gradient_wowpa")
 
 [sub_resource type="LabelSettings" id="LabelSettings_jjvhh"]
-font_size = 64
-
-[sub_resource type="LabelSettings" id="LabelSettings_jxero"]
 font_size = 48
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("bg", "info_label")]
 script = ExtResource("1_jjgbg")
+bg = NodePath("BG")
+info_label = NodePath("UI/HUD/InfoLabel")
 
 [node name="Camera2D" parent="." instance=ExtResource("2_8gbba")]
 
 [node name="BG" parent="." instance=ExtResource("2_bo1nx")]
+bg_texture = SubResource("GradientTexture1D_i6g32")
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 100
@@ -36,31 +44,180 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -240.0
-offset_top = -291.0
-offset_right = 240.0
-offset_bottom = -224.0
+offset_left = -462.0
+offset_top = -205.5
+offset_right = 462.0
+offset_bottom = 205.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Title"
-label_settings = SubResource("LabelSettings_jjvhh")
+text = "
+
+
+
+
+
+
+pal-lane"
+label_settings = ExtResource("4_jjvhh")
 horizontal_alignment = 1
 
-[node name="InfoLabel" type="Label" parent="UI/HUD"]
+[node name="p" type="Label" parent="UI/HUD/TitleLabel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -240.0
-offset_top = -33.5
-offset_right = 240.0
-offset_bottom = 33.5
+offset_left = -475.0
+offset_top = -205.5
+offset_right = -330.0
+offset_bottom = 205.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Press [Enter] to Start
-
-Press [Esc] to Quit Game"
-label_settings = SubResource("LabelSettings_jxero")
+text = "p"
+label_settings = ExtResource("4_jjvhh")
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="a_1" type="Label" parent="UI/HUD/TitleLabel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -327.0
+offset_top = -205.5
+offset_right = -194.0
+offset_bottom = 205.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "a"
+label_settings = ExtResource("4_jjvhh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="l_1" type="Label" parent="UI/HUD/TitleLabel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -205.5
+offset_right = -108.0
+offset_bottom = 205.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "l"
+label_settings = ExtResource("4_jjvhh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="-" type="Label" parent="UI/HUD/TitleLabel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -205.5
+offset_right = -17.0
+offset_bottom = 205.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "-"
+label_settings = ExtResource("4_jjvhh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="l_2" type="Label" parent="UI/HUD/TitleLabel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -205.5
+offset_right = 74.0
+offset_bottom = 205.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "l"
+label_settings = ExtResource("4_jjvhh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="a_2" type="Label" parent="UI/HUD/TitleLabel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -205.5
+offset_right = 197.0
+offset_bottom = 205.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "a"
+label_settings = ExtResource("4_jjvhh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="n" type="Label" parent="UI/HUD/TitleLabel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 196.0
+offset_top = -205.5
+offset_right = 341.0
+offset_bottom = 205.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "n"
+label_settings = ExtResource("4_jjvhh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="e" type="Label" parent="UI/HUD/TitleLabel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 340.0
+offset_top = -207.0
+offset_right = 476.0
+offset_bottom = 204.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "e"
+label_settings = ExtResource("4_jjvhh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -221.0
+offset_top = -88.0
+offset_right = 308.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, 0.95)
+text = "Press [Enter] to Start"
+label_settings = SubResource("LabelSettings_jjvhh")

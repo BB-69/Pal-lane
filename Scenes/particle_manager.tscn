@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://dvbjkl31ryikk" path="res://Scripts/Particle.gd" id="1_0o7ve"]
 [ext_resource type="Script" uid="uid://byrk2kp1moah1" path="res://Scripts/ParticleControl.gd" id="2_r62m1"]
 
-[node name="ParticleManager" type="Node2D"]
+[node name="ParticleManager" type="Node2D" node_paths=PackedStringArray("ptcc")]
 script = ExtResource("1_0o7ve")
+ptcc = NodePath("ParticleController")
 
 [node name="ParticleController" type="Node" parent="."]
 script = ExtResource("2_r62m1")

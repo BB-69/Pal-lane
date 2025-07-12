@@ -8,12 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://dk86blf3s64yr" path="res://Scenes/Entity/enemy.tscn" id="5_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://cqagamdtcdr0l" path="res://Scenes/UI/value_bar.tscn" id="7_v158k"]
 
-[sub_resource type="Gradient" id="Gradient_wowpa"]
+[sub_resource type="Gradient" id="Gradient_1l0tm"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.835294, 0.364706, 0.596078, 1)
+colors = PackedColorArray(0.269682, 0.4763, 0.783754, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_i6g32"]
-gradient = SubResource("Gradient_wowpa")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dj5nj"]
+gradient = SubResource("Gradient_1l0tm")
 
 [sub_resource type="LabelSettings" id="LabelSettings_v158k"]
 font_size = 24
@@ -32,7 +32,7 @@ total_pal_label = NodePath("UI/HUD/TotalPalLabel")
 [node name="Camera2D" parent="." instance=ExtResource("2_3dryh")]
 
 [node name="BG" parent="." instance=ExtResource("3_i6g32")]
-bg_texture = SubResource("GradientTexture1D_i6g32")
+bg_texture = SubResource("GradientTexture1D_dj5nj")
 
 [node name="Player" parent="." node_paths=PackedStringArray("Game") instance=ExtResource("4_wowpa")]
 position = Vector2(576, 524)
@@ -68,6 +68,7 @@ grow_vertical = 2
 rotation = -1.5708
 
 [node name="ScoreLabel" type="Label" parent="UI/HUD"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

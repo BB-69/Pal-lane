@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckbo4sl81dvdw"]
+[gd_scene load_steps=5 format=3 uid="uid://ckbo4sl81dvdw"]
 
 [ext_resource type="Script" uid="uid://ne01c1nal3ut" path="res://Scripts/Background.gd" id="1_sjcup"]
+[ext_resource type="PackedScene" uid="uid://n8dslc2efol" path="res://Scenes/Particle/Continuous/white_circles.tscn" id="2_mdo6f"]
 
 [sub_resource type="Gradient" id="Gradient_sjcup"]
 offsets = PackedFloat32Array(0)
@@ -9,11 +10,14 @@ colors = PackedColorArray(0.273873, 0.273873, 0.273873, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_mdo6f"]
 gradient = SubResource("Gradient_sjcup")
 
-[node name="BG" type="Node2D"]
+[node name="BG" type="Node2D" node_paths=PackedStringArray("white_circle_particle")]
 z_index = -100
 script = ExtResource("1_sjcup")
+white_circle_particle = NodePath("white_circles")
 
 [node name="TextureSprite" type="Sprite2D" parent="."]
 position = Vector2(578, 324)
 scale = Vector2(5, 1000)
 texture = SubResource("GradientTexture1D_mdo6f")
+
+[node name="white_circles" parent="." instance=ExtResource("2_mdo6f")]

@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://do30q52cxvoh5"]
+
+[ext_resource type="FontFile" uid="uid://cq21q16pqk6e0" path="res://Assets/Font/Baloo_static/Baloo2-SemiBold.ttf" id="1_hrhlu"]
+
+[resource]
+font = ExtResource("1_hrhlu")
+font_size = 208
+outline_size = 72
+outline_color = Color(0, 0, 0, 1)

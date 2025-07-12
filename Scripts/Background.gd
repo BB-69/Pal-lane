@@ -4,6 +4,7 @@ class_name BGManager
 var log = Logger.new("BG")
 
 @onready var tex_sprite = $TextureSprite
+@export var white_circle_particle: CPUParticles2D
 
 @export var bg_texture: Texture
 
@@ -17,6 +18,14 @@ func _ready():
 	
 	var bgloaded:bool = _loadbg()
 	if !bgloaded: return
+
+func _process(delta: float) -> void:
+	init_particle(white_circle_particle)
+	
+	if bg_texture:
+		tex_sprite.texture = bg_texture
+	else:
+		set_bg_color(Color(0.5,0.5,0.5))
 
 func _loadbg() -> bool:
 	var folder_path = "res://Assets/BG/"
@@ -49,3 +58,7 @@ func set_bg_color(color:Color):
 	new_gradient.colors = [color]
 	new_texture.gradient = new_gradient
 	tex_sprite.texture = new_texture
+
+func init_particle(particle: CPUParticles2D):
+	particle.position = Stat.Screen["Center"]
+	particle.emitting = true
