@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://dx8hwlst0kbsc"]
+
+[ext_resource type="Texture2D" uid="uid://dnyopf1pyupse" path="res://Assets/Sprite/Game/heart-58-64px.png" id="1_mws2n"]
+
+[sub_resource type="Curve" id="Curve_2sfyd"]
+_data = [Vector2(0, 0), 0.0, 8.26966, 0, 0, Vector2(0.253623, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.56838, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_p6xnb"]
+offsets = PackedFloat32Array(0, 0.0625, 0.1875, 0.258929, 0.5, 0.839286, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.788235, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0.686275, 0.67451, 0.596078, 1, 0.313726, 0.313726, 0.313726, 1, 0, 0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_ih4ei"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, -1233.83, 0, 0, Vector2(0.0797101, -146.067), -177.207, -177.207, 0, 0, Vector2(1, -200), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_brt3j"]
+_data = [Vector2(0, 0), 0.0, 31.0112, 0, 0, Vector2(0.253623, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.56838, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_u1wex"]
+offsets = PackedFloat32Array(0, 0.276786, 0.8125, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.72549, 1, 1, 1, 0)
+
+[node name="heart_explode" type="Node2D"]
+
+[node name="heart_shockwave" type="CPUParticles2D" parent="."]
+z_index = 5
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 1000
+texture = ExtResource("1_mws2n")
+lifetime = 6.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 12.0
+initial_velocity_max = 12.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_2sfyd")
+color_ramp = SubResource("Gradient_p6xnb")
+
+[node name="heart_explosion" type="CPUParticles2D" parent="."]
+z_index = 3
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 24
+texture = ExtResource("1_mws2n")
+lifetime = 3.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.9
+lifetime_randomness = 0.5
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 128.0
+initial_velocity_max = 512.0
+linear_accel_min = 0.1
+linear_accel_max = 0.1
+linear_accel_curve = SubResource("Curve_ih4ei")
+scale_amount_min = 0.1
+scale_amount_curve = SubResource("Curve_brt3j")
+color_ramp = SubResource("Gradient_u1wex")

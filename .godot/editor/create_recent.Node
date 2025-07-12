@@ -1,3 +1,4 @@
+Label
 Node2D
 CPUParticles2D
 Node
@@ -10,5 +11,4 @@ Sprite2D
 AnimatedSprite2D
 Camera2D
 TextureRect
-Label
 Button

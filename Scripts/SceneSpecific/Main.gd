@@ -21,6 +21,8 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):
 		changing_scene = true
 		
+		if event.is_action_pressed("Space"):
+			info_label.text = "Press [Space] to Start"
 		label_tween.kill()
 		blink(info_label, 0.07)
 		Loader.fade_in(Loader.fade_rect, 0.7, 1)

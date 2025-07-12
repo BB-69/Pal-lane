@@ -1,11 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://co11xkq7tuobi"]
+[gd_scene load_steps=10 format=3 uid="uid://co11xkq7tuobi"]
 
 [ext_resource type="Script" uid="uid://d07hntwlrs18a" path="res://Scripts/SceneSpecific/Game.gd" id="1_wowpa"]
 [ext_resource type="PackedScene" uid="uid://51ypa2oakss6" path="res://Scenes/camera.tscn" id="2_3dryh"]
 [ext_resource type="PackedScene" uid="uid://ckbo4sl81dvdw" path="res://Scenes/bg.tscn" id="3_i6g32"]
 [ext_resource type="Script" uid="uid://16pduvtg2fbu" path="res://Scripts/Score.gd" id="4_1l0tm"]
-[ext_resource type="PackedScene" uid="uid://c3aah6672ic1q" path="res://Scenes/Entity/player.tscn" id="4_wowpa"]
-[ext_resource type="PackedScene" uid="uid://dk86blf3s64yr" path="res://Scenes/Entity/enemy.tscn" id="5_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://cqagamdtcdr0l" path="res://Scenes/UI/value_bar.tscn" id="7_v158k"]
 
 [sub_resource type="Gradient" id="Gradient_1l0tm"]
@@ -20,27 +18,22 @@ font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_1l0tm"]
 font_size = 36
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("health_bar", "time_lapsed_label", "total_pal_label")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("health_bar", "time_lapsed_label", "total_pal_label", "total_love_missile_label")]
 script = ExtResource("1_wowpa")
 center_offset_y = -250.0
 lane_positions = Array[Vector2]([Vector2(-150, 0), Vector2(0, 0), Vector2(150, 0)])
 health_bar = NodePath("UI/HUD/HealthBar")
 time_lapsed_label = NodePath("UI/HUD/TimeLabel")
 total_pal_label = NodePath("UI/HUD/TotalPalLabel")
+total_love_missile_label = NodePath("UI/HUD/LoveMissileLabel")
 
 [node name="Camera2D" parent="." instance=ExtResource("2_3dryh")]
 
 [node name="BG" parent="." instance=ExtResource("3_i6g32")]
 bg_texture = SubResource("GradientTexture1D_dj5nj")
-
-[node name="Player" parent="." node_paths=PackedStringArray("Game") instance=ExtResource("4_wowpa")]
-position = Vector2(576, 524)
-Game = NodePath("..")
-
-[node name="Enemy" parent="." node_paths=PackedStringArray("Game") instance=ExtResource("5_1l0tm")]
-position = Vector2(576, 124)
-Game = NodePath("..")
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 100
@@ -86,10 +79,11 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 64.0
-offset_top = 40.0
+offset_top = -80.0
 offset_right = 308.0
-offset_bottom = 104.0
+offset_bottom = -16.0
 grow_vertical = 2
+scale = Vector2(1, 0.9)
 text = "Time Lapsed: 0"
 label_settings = SubResource("LabelSettings_1l0tm")
 vertical_alignment = 1
@@ -100,11 +94,26 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 64.0
-offset_top = 120.0
 offset_right = 192.0
-offset_bottom = 184.0
+offset_bottom = 64.0
 grow_vertical = 2
-text = "Pal: 0"
+scale = Vector2(1, 0.9)
+text = "Pals: 0"
+label_settings = SubResource("LabelSettings_1l0tm")
+vertical_alignment = 1
+
+[node name="LoveMissileLabel" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = 80.0
+offset_right = 315.0
+offset_bottom = 144.0
+grow_vertical = 2
+scale = Vector2(1, 0.9)
+text = "Love Missiles: 0"
 label_settings = SubResource("LabelSettings_1l0tm")
 vertical_alignment = 1
 
