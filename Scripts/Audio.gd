@@ -67,9 +67,9 @@ func get_sound(audio_name: String):
 	var sound_node = _get_sound_node(audio_name)
 	
 	if sound_node: 
-		if sound_node is AudioStreamPlayer2D:
+		if sound_node is AudioStreamPlayer2D or sound_node is Node2D:
 			return sound_node
-		else: log.err("Can't return '%s' if it's not 'AudioStreamPlayer2D' node." % audio_name)
+		else: log.err("Audio '%s' are neither 'AudioStreamPlayer2D' or 'Node2D' node." % audio_name)
 	else:
 		log.err("Audio '%s' not found." % audio_name)
 		return null
@@ -82,7 +82,7 @@ func play_sound(audio_name: String, playing:= true):
 			if playing: sound_node.play()
 			else: sound_node.stop()
 		elif sound_node is Node2D:
-			_group_play_sound(sound_node, playing)
+			group_play_sound(sound_node, playing)
 		else:
 			log.err("Audio '%s' are neither 'AudioStreamPlayer2D' or 'Node2D' node." % audio_name)
 			return null
@@ -132,7 +132,7 @@ func _group_get_longest_sound(audio_parent: Node2D) -> AudioStreamPlayer2D:
 		log.err("Where da longest sound u no u NEED one.")
 		return null
 
-func _group_play_sound(audio_parent: Node2D, playing:= true):
+func group_play_sound(audio_parent: Node2D, playing:= true):
 	if audio_parent == null: return
 	for audio in audio_parent.get_children():
 		if audio is AudioStreamPlayer2D:

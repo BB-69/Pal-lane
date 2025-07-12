@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7latq412iec5"]
+[gd_scene load_steps=12 format=3 uid="uid://7latq412iec5"]
 
 [ext_resource type="Script" uid="uid://bcwxvd4vqok4c" path="res://Scripts/Projectile/Missile.gd" id="1_5avfi"]
 [ext_resource type="PackedScene" uid="uid://coj6ugnk1647e" path="res://Scenes/EntityBase/base_component.tscn" id="1_6xj4p"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bmxl4s8g2a4m1" path="res://Assets/Sprite/Game/Missiles/spaceMissiles_001.png" id="3_u6wvx"]
 [ext_resource type="Texture2D" uid="uid://ckn0m8n0nwhcm" path="res://Assets/Sprite/Game/Missiles/spaceMissiles_002.png" id="5_01rop"]
 [ext_resource type="Texture2D" uid="uid://b4tfeamd4mbwc" path="res://Assets/Sprite/Game/Missiles/spaceMissiles_018.png" id="6_xpikx"]
+[ext_resource type="PackedScene" uid="uid://civggatwlimbb" path="res://Scenes/Particle/Continuous/exhaust_flame.tscn" id="8_wv3fc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_01rop"]
 animations = [{
@@ -42,7 +43,7 @@ radius = 15.0
 radius = 12.0
 height = 45.0
 
-[node name="Missile" type="CharacterBody2D" node_paths=PackedStringArray("base", "pmov", "aspr", "col", "hurt")]
+[node name="Missile" type="CharacterBody2D" node_paths=PackedStringArray("base", "pmov", "aspr", "col", "hurt", "exhaust_flame_ptc")]
 collision_layer = 2
 collision_mask = 0
 motion_mode = 1
@@ -53,6 +54,7 @@ aspr = NodePath("AnimatedSprite2D")
 col = NodePath("CollisionShape2D")
 hurt = NodePath("HurtBox")
 stat = ExtResource("2_u6wvx")
+exhaust_flame_ptc = NodePath("exhaust_flame")
 
 [node name="Base" parent="." instance=ExtResource("1_6xj4p")]
 tag = "Projectile"
@@ -63,6 +65,11 @@ tag = "Projectile"
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_01rop")
 animation = &"Love"
+
+[node name="exhaust_flame" parent="." instance=ExtResource("8_wv3fc")]
+z_index = -1
+position = Vector2(0, 15)
+emitting = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_xpikx")

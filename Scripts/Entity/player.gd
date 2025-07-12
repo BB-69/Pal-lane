@@ -35,6 +35,9 @@ func _ready() -> void:
 	
 	action_param_init()
 	act.init_action_time()
+	
+	do_hp_overtime = true
+	hp_overtime(1, 1.0)
 
 func _physics_process(delta: float) -> void:
 	_update_statistics()
@@ -70,12 +73,19 @@ func _on_damage(actor, dmg: int):
 		print("%s#%s current HP: %s" % [name, base.id, current_hp])
 	if current_hp <= 0: emit_signal("game_over")
 
+var do_hp_overtime: bool = false
+func hp_overtime(amount: int, interval: float):
+	current_hp += amount
+	if get_tree(): await get_tree().create_timer(interval).timeout
+	if get_tree() and do_hp_overtime: hp_overtime(amount, interval)
+
 @export_group("Affection")
 var total_pal: int = 0
 var buff_stacks: int = 0
 
 func _on_ascend(body: CharacterBody2D):
 	total_pal += 1
+	act.get_action("Launch").missile_storage.total_missile["Love"] += 5
 
 @export_group("Game")
 signal game_over

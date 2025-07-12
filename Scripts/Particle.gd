@@ -86,9 +86,9 @@ func get_particle(particle_name: String):
 	var particle_node = _get_particle_node(particle_name)
 	
 	if particle_node: 
-		if particle_node is CPUParticles2D:
+		if particle_node is CPUParticles2D or particle_node is Node2D:
 			return particle_node
-		else: log.err("Can't return '%s' if it's not 'CPUParticles2D' node." % particle_name)
+		else: log.err("Particle '%s' are neither 'CPUParticles2D' or 'Node2D' node." % particle_name)
 	else:
 		log.err("Particle '%s' not found." % particle_name)
 		return null
@@ -101,7 +101,7 @@ func emit_particle(particle_name: String, emitting:= true):
 			if emitting: particle_node.emitting = true
 			else: particle_node.emitting = false
 		elif particle_node is Node2D:
-			_group_emit_particle(particle_node, emitting)
+			group_emit_particle(particle_node, emitting)
 		else:
 			log.err("Particle '%s' are neither 'CPUParticles2D' or 'Node2D' node." % particle_name)
 			return null
@@ -151,7 +151,7 @@ func _group_get_longest_particle(particle_parent: Node2D) -> CPUParticles2D:
 		log.err("Where da longest particle u no u NEED one.")
 		return null
 
-func _group_emit_particle(particle_parent: Node2D, emitting:= true):
+func group_emit_particle(particle_parent: Node2D, emitting:= true):
 	if particle_parent == null: return
 	for particle in particle_parent.get_children():
 		if particle is CPUParticles2D:

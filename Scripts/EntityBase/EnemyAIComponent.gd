@@ -16,7 +16,7 @@ func _update(delta):
 	move()
 	launch(delta)
 
-var position_threshold = 10
+var position_threshold = 125
 var moving: bool = false
 func move():
 	if Stat.Player and Stat.Player.current_hp > 0 and char_body and !moving:

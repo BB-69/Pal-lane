@@ -2,7 +2,7 @@ extends ActionData
 class_name ParryAction
 
 signal parry(actor)
-
+signal slash(actor)
 func execute(actor, params = {}):
 	var collided = actor.hurt.get_overlapping_bodies()
 	var missiles: Array[ProjectileClass] = []
@@ -15,3 +15,7 @@ func execute(actor, params = {}):
 	emit_signal("parry", actor)
 	for c in callables:
 		disconnect("parry", c)
+	
+	Con.c(self, "slash", Stat.Ptc.ptcc, "_on_slash")
+	emit_signal("slash", actor)
+	disconnect("slash", Callable(Stat.Ptc.ptcc, "_on_slash"))

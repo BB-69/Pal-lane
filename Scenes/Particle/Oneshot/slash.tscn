@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://daicmij15kmhy"]
+
+[sub_resource type="Curve" id="Curve_tqr0y"]
+_data = [Vector2(0, 0), 0.0, 3.35955, 0, 0, Vector2(0.101449, 0.730337), 1.80899, 1.80899, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.46596, 0.0, 0, 0]
+point_count = 4
+
+[node name="slash" type="Node2D"]
+z_index = 3
+
+[node name="slash_rod" type="CPUParticles2D" parent="."]
+position = Vector2(0, -96)
+emitting = false
+amount = 128
+lifetime = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(1, 48)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 64.0
+initial_velocity_max = 64.0
+scale_amount_min = 8.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_tqr0y")

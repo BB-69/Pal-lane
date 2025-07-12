@@ -25,6 +25,8 @@ func _physics_process(delta: float) -> void:
 	pmov._physics_update(delta)
 	move_and_slide()
 	check_collision()
+	
+	exhaust_flame_speed()
 
 func init(from: CharacterBody2D, type: String):
 	name = "Missile"
@@ -65,6 +67,8 @@ func _on_parry(actor: CharacterBody2D):
 
 signal damage(actor, dmg: int)
 signal affect(actor, aff: int)
+signal fast_collision(actor)
+signal heart_swirl(actor)
 func check_collision():
 	var collided = hurt.get_overlapping_bodies()
 	var players: Array = []
@@ -83,8 +87,28 @@ func check_collision():
 		Con.c(self, "affect", body, "_on_affect")
 	emit_signal("damage", actor, stat.damage)
 	emit_signal("affect", actor, stat.affection_point)
+	
+	if stat.type == "Love":
+		Con.c(self, "heart_swirl", Stat.Ptc.ptcc, "_on_heart_swirl")
+		emit_signal("heart_swirl", self)
+	else:
+		Con.c(self, "fast_collision", Stat.Ptc.ptcc, "_on_fast_collision")
+		emit_signal("fast_collision", self)
+	
+	
 	Stat.Projectile.erase(base.id)
 	Stat.Gm.missile_pooler.release_instance(self)
+
+@export_group("Visual")
+@export var exhaust_flame_ptc: CPUParticles2D
+func exhaust_flame_speed():
+	var multipler = stat.acceleration/300.0
+	exhaust_flame_ptc.lifetime = (multipler * 0.3) + 0.2
+	if exhaust_flame_ptc.amount != int(multipler * 4) + 4:
+		exhaust_flame_ptc.amount = int(multipler * 4) + 4
+	exhaust_flame_ptc.initial_velocity_max = multipler * 240.0
+	exhaust_flame_ptc.initial_velocity_min = exhaust_flame_ptc.initial_velocity_max * 0.75
+	exhaust_flame_ptc.emitting = true
 
 
 

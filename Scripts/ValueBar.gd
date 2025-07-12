@@ -44,11 +44,19 @@ func progress_bar_appearance(delta):
 	
 	var change_speed:float = (progress_bar.value - previous_value) / delta
 	var max_speed:float = value_smoothing * delta * 300
-	var red:float = lerp(0.9, 0.0, clamp(change_speed/max_speed, 0.0, 1.0))
-	var green:float = lerp(0.0, 0.9, clamp(change_speed/max_speed, -1.0, 0.0) + 1.0)
+	#var red:float = lerp(0.9, 0.0, clamp(change_speed/max_speed, 0.0, 1.0))
+	#var green:float = lerp(0.0, 0.9, clamp(change_speed/max_speed, -1.0, 0.0) + 1.0)
+	#var blue:float = 0
+	var red:float = lerp(0.8, 1.0, clamp(change_speed/max_speed, -1.0, 0.0) + 1.0) if (
+		change_speed/max_speed < 0
+		) else lerp(1.0, 0.2, clamp(change_speed/max_speed, 0.0, 1.0))
+	var green:float = lerp(0.4, 1.0, clamp(change_speed/max_speed, -1.0, 0.0) + 1.0) if (
+		change_speed/max_speed < 0
+		) else lerp(1.0, 0.7, clamp(change_speed/max_speed, 0.0, 1.0))
+	var blue:float = lerp(0.2, 1.0, clamp(change_speed/max_speed, -1.0, 0.0) + 1.0)
 	
 	if progress_bar_gradient:
-		target_progress_bar_color = lerp(target_progress_bar_color, Color(red, green, 0), value_smoothing * delta)
+		target_progress_bar_color = lerp(target_progress_bar_color, Color(red, green, blue), value_smoothing * delta)
 		progress_bar_gradient.set_color(0, target_progress_bar_color)
 
 var progress_bar_gradient: Gradient
