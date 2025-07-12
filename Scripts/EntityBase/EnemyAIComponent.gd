@@ -38,7 +38,7 @@ func launch(delta):
 		if launch_timer > launch_warmup and !launching:
 			launching = true
 			var rand = randi_range(0, 100)
-			char_body.current_projectile_type = "Normal" if rand < 80 else "Golden"
+			char_body.current_projectile_type = "Normal" if rand < 70 else "Golden"
 			
 			char_body.act.get_action("Launch").missile_storage.total_missile[char_body.current_projectile_type] = 10
 			await get_tree().process_frame
