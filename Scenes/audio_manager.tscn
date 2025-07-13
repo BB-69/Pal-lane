@@ -1,8 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://diycjygkrmvam"]
+[gd_scene load_steps=17 format=3 uid="uid://diycjygkrmvam"]
 
 [ext_resource type="Script" uid="uid://c3th4osnkamn4" path="res://Scripts/Audio.gd" id="1_4tj6f"]
 [ext_resource type="Script" uid="uid://d0o81f3xm1lvy" path="res://Scripts/AudioControl.gd" id="2_hhwve"]
 [ext_resource type="AudioStream" uid="uid://6khynjgs85yl" path="res://Assets/Audio/Sfx/silence-5-seconds.mp3" id="3_hhwve"]
+[ext_resource type="PackedScene" uid="uid://b1l1k45rmnsyt" path="res://Scenes/Audio/Oneshot/empty.tscn" id="4_fasow"]
+[ext_resource type="PackedScene" uid="uid://bmso7ktvbldh7" path="res://Scenes/Audio/Oneshot/clash.tscn" id="5_1bal0"]
+[ext_resource type="PackedScene" uid="uid://cepmpt7y3umwk" path="res://Scenes/Audio/Oneshot/confirm.tscn" id="6_vhwx7"]
+[ext_resource type="PackedScene" uid="uid://oc0hpojuhsoh" path="res://Scenes/Audio/Oneshot/explosion.tscn" id="7_bkjj7"]
+[ext_resource type="PackedScene" uid="uid://dqxw6vxf8rfq1" path="res://Scenes/Audio/Oneshot/gameover.tscn" id="8_dv115"]
+[ext_resource type="PackedScene" uid="uid://djrw8l1q8jxyt" path="res://Scenes/Audio/Oneshot/hit.tscn" id="9_tesok"]
+[ext_resource type="PackedScene" uid="uid://civhcy5quqryt" path="res://Scenes/Audio/Oneshot/launch.tscn" id="10_s7ae5"]
+[ext_resource type="PackedScene" uid="uid://bighxtykvhtqg" path="res://Scenes/Audio/Oneshot/pickup.tscn" id="11_w4e61"]
+[ext_resource type="PackedScene" uid="uid://c5lpwc2loabvs" path="res://Scenes/Audio/Oneshot/powerup.tscn" id="12_uebr4"]
+[ext_resource type="PackedScene" uid="uid://6un34bt70xlt" path="res://Scenes/Audio/Oneshot/powerup-2.tscn" id="13_1bal0"]
+[ext_resource type="PackedScene" uid="uid://7ybg8c0y0fpu" path="res://Scenes/Audio/Oneshot/shoot.tscn" id="13_ype7x"]
+[ext_resource type="PackedScene" uid="uid://di5xv43461qe7" path="res://Scenes/Audio/Oneshot/sweepup.tscn" id="14_vhwx7"]
+[ext_resource type="PackedScene" uid="uid://cwld8rwiqca52" path="res://Scenes/Audio/Oneshot/slash.tscn" id="15_bkjj7"]
 
 [node name="AudioManager" type="Node2D" node_paths=PackedStringArray("audc")]
 script = ExtResource("1_4tj6f")
@@ -19,5 +32,28 @@ parameters/looping = true
 
 [node name="Oneshot" type="Node2D" parent="."]
 
-[node name="empty" type="AudioStreamPlayer2D" parent="Oneshot"]
-stream = ExtResource("3_hhwve")
+[node name="empty" parent="Oneshot" instance=ExtResource("4_fasow")]
+
+[node name="clash" parent="Oneshot" instance=ExtResource("5_1bal0")]
+
+[node name="confirm" parent="Oneshot" instance=ExtResource("6_vhwx7")]
+
+[node name="explosion" parent="Oneshot" instance=ExtResource("7_bkjj7")]
+
+[node name="gameover" parent="Oneshot" instance=ExtResource("8_dv115")]
+
+[node name="hit" parent="Oneshot" instance=ExtResource("9_tesok")]
+
+[node name="launch" parent="Oneshot" instance=ExtResource("10_s7ae5")]
+
+[node name="pickup" parent="Oneshot" instance=ExtResource("11_w4e61")]
+
+[node name="powerup" parent="Oneshot" instance=ExtResource("12_uebr4")]
+
+[node name="powerup-2" parent="Oneshot" instance=ExtResource("13_1bal0")]
+
+[node name="sweepup" parent="Oneshot" instance=ExtResource("14_vhwx7")]
+
+[node name="slash" parent="Oneshot" instance=ExtResource("15_bkjj7")]
+
+[node name="shoot" parent="Oneshot" instance=ExtResource("13_ype7x")]

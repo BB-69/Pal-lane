@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://gbqojhfb8i0w"]
+[gd_scene load_steps=8 format=3 uid="uid://gbqojhfb8i0w"]
 
 [ext_resource type="Script" uid="uid://dvbjkl31ryikk" path="res://Scripts/Particle.gd" id="1_0o7ve"]
 [ext_resource type="Script" uid="uid://byrk2kp1moah1" path="res://Scripts/ParticleControl.gd" id="2_r62m1"]
+[ext_resource type="PackedScene" uid="uid://b2c0ja31s6wy2" path="res://Scenes/Particle/Oneshot/fast_collision.tscn" id="3_mbvpm"]
+[ext_resource type="PackedScene" uid="uid://dx8hwlst0kbsc" path="res://Scenes/Particle/Oneshot/heart_explode.tscn" id="4_ox0k5"]
+[ext_resource type="PackedScene" uid="uid://f7hjtn6en7i7" path="res://Scenes/Particle/Oneshot/heart_swirl.tscn" id="5_316gu"]
+[ext_resource type="PackedScene" uid="uid://rayuwgq80pfy" path="res://Scenes/Particle/Oneshot/shockwave.tscn" id="6_0g3o7"]
+[ext_resource type="PackedScene" uid="uid://daicmij15kmhy" path="res://Scenes/Particle/Oneshot/slash.tscn" id="7_f6lt7"]
 
 [node name="ParticleManager" type="Node2D" node_paths=PackedStringArray("ptcc")]
 script = ExtResource("1_0o7ve")
@@ -13,3 +18,13 @@ script = ExtResource("2_r62m1")
 [node name="Continuous" type="Node2D" parent="."]
 
 [node name="Oneshot" type="Node2D" parent="."]
+
+[node name="fast_collision" parent="Oneshot" instance=ExtResource("3_mbvpm")]
+
+[node name="heart_explode" parent="Oneshot" instance=ExtResource("4_ox0k5")]
+
+[node name="heart_swirl" parent="Oneshot" instance=ExtResource("5_316gu")]
+
+[node name="shockwave" parent="Oneshot" instance=ExtResource("6_0g3o7")]
+
+[node name="slash" parent="Oneshot" instance=ExtResource("7_f6lt7")]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b14fkx7ui6dyl"]
+[gd_scene load_steps=11 format=3 uid="uid://b14fkx7ui6dyl"]
 
 [ext_resource type="Script" uid="uid://utrlt8pptvb4" path="res://Scripts/SceneSpecific/Result.gd" id="1_dj5nj"]
 [ext_resource type="PackedScene" uid="uid://51ypa2oakss6" path="res://Scenes/camera.tscn" id="2_37uq0"]
+[ext_resource type="PackedScene" uid="uid://diycjygkrmvam" path="res://Scenes/audio_manager.tscn" id="2_dj5nj"]
 [ext_resource type="PackedScene" uid="uid://ckbo4sl81dvdw" path="res://Scenes/bg.tscn" id="3_knq36"]
 
 [sub_resource type="Gradient" id="Gradient_37uq0"]
@@ -35,6 +36,8 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_dj5nj")
 final_score_label = NodePath("UI/HUD/FinalScoreLabel")
 time_lapsed_label = NodePath("UI/HUD/TimeLapsedLabel")
+
+[node name="AudioManager" parent="." instance=ExtResource("2_dj5nj")]
 
 [node name="Camera2D" parent="." instance=ExtResource("2_37uq0")]
 

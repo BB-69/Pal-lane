@@ -35,7 +35,11 @@ func _init_particles():
 		for node in particle_path.get_children():
 			var value_name = node.name
 			particles[node] = value_name
-		if !particles.is_empty(): log.p("Init continuous particles: %s" % particles.values())
+		if !particles.is_empty():
+			var str = ""
+			for particle in particles.values():
+				str += "%s, " % particle
+			log.p("Init continuous particles: %s" % str)
 	else:
 		log.err("Could not found particle path: " + particle_path)
 	
@@ -43,12 +47,16 @@ func _init_particles():
 		for node in oneshot_particle_path.get_children():
 			var value_name = node.name
 			oneshot_particles[node] = value_name
-		if !oneshot_particles.is_empty(): log.p("Init oneshot particles: %s" % oneshot_particles.values())
+		if !oneshot_particles.is_empty():
+			var str = ""
+			for particle in oneshot_particles.values():
+				str += "%s, " % particle
+			log.p("Init oneshot particles: %s" % str)
 	else:
 		log.err("Could not found particle path: " + oneshot_particle_path)
 
 func _load_particle_scenes(folder_path: String, target_dict: Dictionary):
-	var dir := DirAccess.open(folder_path)
+	"""var dir := DirAccess.open(folder_path)
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
@@ -61,7 +69,14 @@ func _load_particle_scenes(folder_path: String, target_dict: Dictionary):
 					continuous_particle_pool[key_name] = []
 			file_name = dir.get_next()
 	else:
-		log.err("Could not open folder: " + folder_path)
+		log.err("Could not open folder: " + folder_path)"""
+	
+	for name in FileRegistry.PTC_CONTINUOUS.keys():
+		particle_scenes[name] = FileRegistry.PTC_CONTINUOUS[name]
+		continuous_particle_pool[name] = []
+
+	for name in FileRegistry.PTC_ONESHOT.keys():
+		oneshot_particle_scenes[name] = FileRegistry.PTC_ONESHOT[name]
 
 
 func _process(delta: float) -> void:

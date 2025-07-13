@@ -19,3 +19,4 @@ func execute(actor, params = {}):
 	Con.c(self, "slash", Stat.Ptc.ptcc, "_on_slash")
 	emit_signal("slash", actor)
 	disconnect("slash", Callable(Stat.Ptc.ptcc, "_on_slash"))
+	if Stat.Aud: Stat.Aud.audc._on_sound(actor, "slash")

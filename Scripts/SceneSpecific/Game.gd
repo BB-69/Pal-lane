@@ -67,7 +67,7 @@ func _unhandled_input(event):
 		emit_signal("add_score", 1)
 	elif Input.is_action_just_pressed("ui_cancel"):
 		save_data()
-		await Loader.change_scene("Result")
+		game_over()
 
 @export_group("UI")
 @export var health_bar: ValueBar
@@ -89,6 +89,7 @@ func update_label_text(delta):
 	time_lapsed_label.text = "Time Lapsed: %s" % TimeFormat.t(time_lapsed)
 	
 	if total_pal < Stat.Player.total_pal:
+		if Stat.Aud: Stat.Aud.audc._on_sound(self, "pickup")
 		total_pal = Stat.Player.total_pal
 		total_pal_label.text = "Pals: %s" % total_pal
 		total_pal_label.modulate.r = 0.2
@@ -124,6 +125,8 @@ func game_over():
 		Stat.Enemy.erase(e)
 		enemy.queue_free()
 	Stat.Enemy.clear()
+	for m in missile_pooler.active_instances:
+		missile_pooler.release_instance(m)
 	Stat.Gm = null
 	await Loader.change_scene("Result")
 

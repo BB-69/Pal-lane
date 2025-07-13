@@ -31,7 +31,7 @@ func _ready() -> void:
 	if !oneshot_sound_scenes.is_empty(): log.p("Loaded oneshot sounds: %s" % log_aud)
 
 func _init_audios():
-	if sound_path:
+	"""if sound_path:
 		for node in sound_path.get_children():
 			var value_name = node.name
 			sounds[node] = value_name
@@ -45,7 +45,14 @@ func _init_audios():
 			oneshot_sounds[node] = value_name
 		if !oneshot_sounds.is_empty(): log.p("Init oneshot sounds: %s" % oneshot_sounds.values())
 	else:
-		log.err("Could not found sound path: " + oneshot_sound_path)
+		log.err("Could not found sound path: " + oneshot_sound_path)"""
+	
+	for name in FileRegistry.AUD_CONTINUOUS.keys():
+		sound_scenes[name] = FileRegistry.AUD_CONTINUOUS[name]
+		continuous_audio_pool[name] = []
+
+	for name in FileRegistry.AUD_ONESHOT.keys():
+		oneshot_sound_scenes[name] = FileRegistry.AUD_ONESHOT[name]
 
 func _load_audio_scenes(folder_path: String, target_dict: Dictionary):
 	var dir := DirAccess.open(folder_path)

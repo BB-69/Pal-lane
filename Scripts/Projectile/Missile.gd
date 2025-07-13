@@ -94,10 +94,11 @@ func check_collision():
 	else:
 		Con.c(self, "fast_collision", Stat.Ptc.ptcc, "_on_fast_collision")
 		emit_signal("fast_collision", self)
+	if Stat.Aud: Stat.Aud.audc._on_sound(self, "clash")
 	
 	
 	Stat.Projectile.erase(base.id)
-	Stat.Gm.missile_pooler.release_instance(self)
+	if Stat.Gm: Stat.Gm.missile_pooler.release_instance(self)
 
 @export_group("Visual")
 @export var exhaust_flame_ptc: CPUParticles2D

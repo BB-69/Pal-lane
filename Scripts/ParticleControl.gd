@@ -11,6 +11,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func kill_instance(particle):
+	await get_tree().create_timer(10).timeout
+	particle.queue_free()
+
 func _on_shockwave(obj):
 	var particle = ptc.get_particle("shockwave")
 	particle.global_position = obj.global_position

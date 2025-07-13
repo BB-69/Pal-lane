@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5lpwc2loabvs"]
+
+[ext_resource type="AudioStream" uid="uid://b5jr13ot04cbn" path="res://Assets/Audio/Oneshot/PowerUp.wav" id="1_g5y75"]
+
+[node name="powerup" type="Node2D"]
+
+[node name="powerup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_g5y75")
+panning_strength = 0.0

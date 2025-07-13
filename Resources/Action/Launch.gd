@@ -22,5 +22,7 @@ func execute(actor, params = {
 	missile.global_position = actor.global_position + (Vector2.UP * radius*1.8).rotated(missile.rotation)
 	Con.c(self, "shockwave", Stat.Ptc.ptcc, "_on_shockwave")
 	emit_signal("shockwave", missile)
+	if Stat.Aud: Stat.Aud.audc._on_sound(actor, "shoot")
+	if Stat.Aud: Stat.Aud.audc._on_sound(actor, "launch")
 	actor.get_parent().add_child(missile)
 	print("%s#%s launched a %s#%s!" % [actor.name, actor.base.id, missile.name, missile.base.id])

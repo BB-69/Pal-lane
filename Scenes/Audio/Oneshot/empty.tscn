@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1l1k45rmnsyt"]
+
+[ext_resource type="AudioStream" uid="uid://6khynjgs85yl" path="res://Assets/Audio/Sfx/silence-5-seconds.mp3" id="1_li2fu"]
+
+[node name="empty" type="Node2D"]
+
+[node name="empty" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_li2fu")
+panning_strength = 0.0

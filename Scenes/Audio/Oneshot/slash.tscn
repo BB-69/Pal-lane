@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwld8rwiqca52"]
+
+[ext_resource type="AudioStream" uid="uid://dmwdxljy55j5p" path="res://Assets/Audio/Oneshot/Slash.wav" id="1_1orbi"]
+
+[node name="slash" type="Node2D"]
+
+[node name="slash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_1orbi")
+panning_strength = 0.0

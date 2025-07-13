@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cepmpt7y3umwk"]
+
+[ext_resource type="AudioStream" uid="uid://cm6tx6fh02wio" path="res://Assets/Audio/Oneshot/Confirm.wav" id="1_jwxpp"]
+
+[node name="confirm" type="Node2D"]
+
+[node name="confirm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_jwxpp")
+volume_db = 3.0
+panning_strength = 0.0

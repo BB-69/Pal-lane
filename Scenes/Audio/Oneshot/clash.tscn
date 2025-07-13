@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmso7ktvbldh7"]
+
+[ext_resource type="AudioStream" uid="uid://bccsd0aduodym" path="res://Assets/Audio/Oneshot/Clash.wav" id="1_tff7o"]
+
+[node name="clash" type="Node2D"]
+
+[node name="clash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_tff7o")
+panning_strength = 0.0

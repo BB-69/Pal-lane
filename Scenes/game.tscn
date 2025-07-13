@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://co11xkq7tuobi"]
+[gd_scene load_steps=12 format=3 uid="uid://co11xkq7tuobi"]
 
 [ext_resource type="Script" uid="uid://d07hntwlrs18a" path="res://Scripts/SceneSpecific/Game.gd" id="1_wowpa"]
+[ext_resource type="PackedScene" uid="uid://diycjygkrmvam" path="res://Scenes/audio_manager.tscn" id="2_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://51ypa2oakss6" path="res://Scenes/camera.tscn" id="2_3dryh"]
 [ext_resource type="PackedScene" uid="uid://ckbo4sl81dvdw" path="res://Scenes/bg.tscn" id="3_i6g32"]
+[ext_resource type="PackedScene" uid="uid://gbqojhfb8i0w" path="res://Scenes/particle_manager.tscn" id="3_v158k"]
 [ext_resource type="Script" uid="uid://16pduvtg2fbu" path="res://Scripts/Score.gd" id="4_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://cqagamdtcdr0l" path="res://Scenes/UI/value_bar.tscn" id="7_v158k"]
 
@@ -29,6 +31,10 @@ health_bar = NodePath("UI/HUD/HealthBar")
 time_lapsed_label = NodePath("UI/HUD/TimeLabel")
 total_pal_label = NodePath("UI/HUD/TotalPalLabel")
 total_love_missile_label = NodePath("UI/HUD/LoveMissileLabel")
+
+[node name="AudioManager" parent="." instance=ExtResource("2_1l0tm")]
+
+[node name="ParticleManager" parent="." instance=ExtResource("3_v158k")]
 
 [node name="Camera2D" parent="." instance=ExtResource("2_3dryh")]
 

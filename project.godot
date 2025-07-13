@@ -24,8 +24,7 @@ GetShapeRadius="*res://Scripts/Helper/GetShapeRadius.gd"
 ShortestAngleTo="*res://Scripts/Helper/ShortestAngleTo.gd"
 TimeFormat="*res://Scripts/Helper/TimeFormat.gd"
 Loader="*res://Scenes/loader.tscn"
-Aud="*res://Scenes/audio_manager.tscn"
-Ptc="*res://Scenes/particle_manager.tscn"
+FileRegistry="*res://Scripts/FileRegistry.gd"
 
 [display]
 

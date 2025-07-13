@@ -1,6 +1,9 @@
+res://Scenes/Audio/Oneshot
+D:/TM Folder/Program-and-Projects/Godot/Projects/pal-lane/Exports/Web
+D:/TM Folder/Program-and-Projects/Godot/Projects/pal-lane/Exports/Windows
+res://Scripts
 res://Scenes/Particle/Oneshot
 res://Scenes/Particle/Continuous
-D:/TM Folder/Program-and-Projects/Godot/Projects/pal-lane/Exports/Windows
 res://Assets/FontSetting
 res://Scripts/Helper
 res://Scripts/EntityBase
@@ -15,9 +18,5 @@ res://Scripts/ProjectileBase
 res://Scenes/Projectile
 res://Assets/Sprite/Game
 res://Scenes
-res://Scripts
 res://Resources
 res://Assets/Sprite/UI
-res://Assets/Font
-D:/TM Folder/Program-and-Projects/Godot/Projects/_godot_template/Exports/Windows
-D:/TM Folder/Program-and-Projects/Godot/Projects/_godot_template/Exports/Linux

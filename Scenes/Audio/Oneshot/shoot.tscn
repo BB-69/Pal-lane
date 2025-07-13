@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://7ybg8c0y0fpu"]
+
+[ext_resource type="AudioStream" uid="uid://bntxcgxmlgxv7" path="res://Assets/Audio/Oneshot/Shoot.wav" id="1_1vbqr"]
+
+[node name="shoot" type="Node2D"]
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_1vbqr")
+panning_strength = 0.0

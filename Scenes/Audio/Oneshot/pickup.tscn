@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bighxtykvhtqg"]
+
+[ext_resource type="AudioStream" uid="uid://dnsdgvy0ctiis" path="res://Assets/Audio/Oneshot/Pickup.wav" id="1_n505l"]
+
+[node name="pickup" type="Node2D"]
+
+[node name="pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_n505l")
+panning_strength = 0.0

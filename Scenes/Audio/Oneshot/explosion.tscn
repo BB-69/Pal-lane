@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://oc0hpojuhsoh"]
+
+[ext_resource type="AudioStream" uid="uid://sqp8815u2r2i" path="res://Assets/Audio/Oneshot/Explosion.wav" id="1_kcrus"]
+
+[node name="explosion" type="Node2D"]
+
+[node name="explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_kcrus")
+panning_strength = 0.0

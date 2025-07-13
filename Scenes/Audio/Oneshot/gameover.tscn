@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqxw6vxf8rfq1"]
+
+[ext_resource type="AudioStream" uid="uid://chi6qnyuvbvt2" path="res://Assets/Audio/Oneshot/Gameover.wav" id="1_ec07j"]
+
+[node name="gameover" type="Node2D"]
+
+[node name="gameover" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_ec07j")
+panning_strength = 0.0

@@ -85,6 +85,7 @@ func _on_damage(actor, dmg: int):
 	current_hp = clamp(current_hp - dmg, 0, max_hp)
 	
 	blink(Color(1, 0.2, 0.2), 0.3, 0.1)
+	if Stat.Aud: Stat.Aud.audc._on_sound(self, "hit")
 	
 	if abs(dmg) > 0 and current_hp != previous_hp:
 		if current_hp < previous_hp: print("%s#%s dealt %s DMG to %s#%s" % [actor.name, actor.base.id, previous_hp - current_hp, name, base.id])

@@ -110,6 +110,7 @@ func change_scene(set_scene: String, duration: float = 0.5, slides: Array = [tru
 	var scene_path = scene[set_scene]
 	Stat.set_loading(true)
 	
+	if Stat.Aud: Stat.Aud.audc._on_sound(self, "gameover")
 	slide_in(duration if slides[0] == true else 0)
 	await get_tree().create_timer(duration).timeout
 	if has_load_icon:
@@ -128,6 +129,7 @@ func change_scene(set_scene: String, duration: float = 0.5, slides: Array = [tru
 	if has_load_icon:
 		fade_in(loading_icon, duration/2.0 if slides[1] == true else 0)
 		await get_tree().create_timer(duration/2.0).timeout
+	if Stat.Aud: Stat.Aud.audc._on_sound(self, "sweepup")
 	slide_out(duration if slides[1] == true else 0)
 	await get_tree().create_timer(duration).timeout
 	

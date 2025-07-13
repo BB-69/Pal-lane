@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbrkdefl77xl4"]
+[gd_scene load_steps=9 format=3 uid="uid://dbrkdefl77xl4"]
 
 [ext_resource type="Script" uid="uid://bru030l4g4vn1" path="res://Scripts/SceneSpecific/Main.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://51ypa2oakss6" path="res://Scenes/camera.tscn" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://ckbo4sl81dvdw" path="res://Scenes/bg.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://diycjygkrmvam" path="res://Scenes/audio_manager.tscn" id="2_kry3j"]
 [ext_resource type="LabelSettings" uid="uid://do30q52cxvoh5" path="res://Assets/FontSetting/title_text.tres" id="4_jjvhh"]
 
 [sub_resource type="Gradient" id="Gradient_wowpa"]
@@ -21,6 +22,8 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_jjgbg")
 bg = NodePath("BG")
 info_label = NodePath("UI/HUD/InfoLabel")
+
+[node name="AudioManager" parent="." instance=ExtResource("2_kry3j")]
 
 [node name="Camera2D" parent="." instance=ExtResource("2_8gbba")]
 

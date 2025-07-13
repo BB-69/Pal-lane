@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://civhcy5quqryt"]
+
+[ext_resource type="AudioStream" uid="uid://jqll1tnqtun" path="res://Assets/Audio/Oneshot/Launch.wav" id="1_xsp77"]
+
+[node name="launch" type="Node2D"]
+
+[node name="launch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_xsp77")
+volume_db = -10.0
+panning_strength = 0.0

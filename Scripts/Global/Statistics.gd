@@ -60,7 +60,7 @@ func is_offscreen(obj) -> bool:
 		return true
 	return false
 func check_is_offscreen():
-	for id in Projectile: if is_offscreen(Projectile[id]):
+	for id in Projectile: if Gm and is_offscreen(Projectile[id]):
 		Gm.missile_pooler.release_instance(Projectile[id])
 		Projectile.erase(id)
 
