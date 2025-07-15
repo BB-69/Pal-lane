@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dk86blf3s64yr"]
+[gd_scene load_steps=23 format=3 uid="uid://dk86blf3s64yr"]
 
 [ext_resource type="PackedScene" uid="uid://coj6ugnk1647e" path="res://Scenes/EntityBase/base_component.tscn" id="1_g35wj"]
 [ext_resource type="Script" uid="uid://caukvhx6g5046" path="res://Scripts/Entity/Enemy.gd" id="1_td8e2"]
@@ -11,7 +11,10 @@
 [ext_resource type="Script" uid="uid://y2t7hdv4v11" path="res://Resources/Action/Launch.gd" id="7_lr2hk"]
 [ext_resource type="Resource" uid="uid://8hu6l8hnvavh" path="res://Resources/Action/Parry.tres" id="8_ibj7m"]
 [ext_resource type="Texture2D" uid="uid://bmxwcmb1ivxn8" path="res://Assets/Sprite/Game/Circle1.png" id="9_3g43h"]
+[ext_resource type="PackedScene" uid="uid://8bgj304ytld2" path="res://Scenes/EntityBase/health_component.tscn" id="11_p74e1"]
+[ext_resource type="PackedScene" uid="uid://btq5vgoqwymnr" path="res://Scenes/EntityBase/affection_component.tscn" id="12_lr2hk"]
 [ext_resource type="FontFile" uid="uid://cim26588xl5xb" path="res://Assets/Font/Play-Bold.ttf" id="12_tjvji"]
+[ext_resource type="Script" uid="uid://dc5j2qyfddtl7" path="res://Scripts/EntityBase/AnimatedSpriteComponent.gd" id="14_lr2hk"]
 
 [sub_resource type="Resource" id="Resource_lrgl7"]
 script = ExtResource("6_p74e1")
@@ -56,7 +59,7 @@ radius = 45.0
 radius = 50.0
 height = 150.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("base", "ai", "mov", "act", "aspr", "col", "hurt")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("base", "ai", "mov", "act", "hp", "aff", "aspr", "col", "hurt")]
 rotation = 3.14159
 collision_mask = 0
 script = ExtResource("1_td8e2")
@@ -64,6 +67,8 @@ base = NodePath("Base")
 ai = NodePath("EnemyAI")
 mov = NodePath("Movement")
 act = NodePath("Action")
+hp = NodePath("Health")
+aff = NodePath("Affection")
 aspr = NodePath("AnimatedSprite2D")
 col = NodePath("CollisionShape2D")
 hurt = NodePath("HurtBox")
@@ -84,10 +89,15 @@ cooldowns = Dictionary[String, float]({
 "Parry": 0.5
 })
 
+[node name="Health" parent="." instance=ExtResource("11_p74e1")]
+
+[node name="Affection" parent="." instance=ExtResource("12_lr2hk")]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 3.14159
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_amhh4")
+script = ExtResource("14_lr2hk")
 
 [node name="Label" type="Label" parent="AnimatedSprite2D"]
 anchors_preset = 8

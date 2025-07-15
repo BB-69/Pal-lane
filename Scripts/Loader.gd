@@ -33,6 +33,13 @@ func _ready():
 	loading_icon.hide()
 	change_scene("Main", 0.8, [false, true])
 
+func _process(delta: float) -> void:
+	_connect_signals()
+
+signal sound(actor, sound_name)
+func _connect_signals():
+	if Stat.Aud: Con.c(self, "sound", Stat.Aud.audc, "_on_sound")
+
 func slide_in(duration: float = 0.5):
 	top_rect.position = initial_pos["top_rect"]
 	bottom_rect.position = initial_pos["bottom_rect"]
@@ -110,7 +117,7 @@ func change_scene(set_scene: String, duration: float = 0.5, slides: Array = [tru
 	var scene_path = scene[set_scene]
 	Stat.set_loading(true)
 	
-	if Stat.Aud: Stat.Aud.audc._on_sound(self, "gameover")
+	emit_signal("sound", self, "gameover")
 	slide_in(duration if slides[0] == true else 0)
 	await get_tree().create_timer(duration).timeout
 	if has_load_icon:
@@ -129,7 +136,7 @@ func change_scene(set_scene: String, duration: float = 0.5, slides: Array = [tru
 	if has_load_icon:
 		fade_in(loading_icon, duration/2.0 if slides[1] == true else 0)
 		await get_tree().create_timer(duration/2.0).timeout
-	if Stat.Aud: Stat.Aud.audc._on_sound(self, "sweepup")
+	emit_signal("sound", self, "sweepup")
 	slide_out(duration if slides[1] == true else 0)
 	await get_tree().create_timer(duration).timeout
 	

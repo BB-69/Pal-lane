@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://btq5vgoqwymnr"]
+
+[ext_resource type="Script" uid="uid://cb7tfx6lpcefe" path="res://Scripts/EntityBase/AffectionComponent.gd" id="1_eojw7"]
+
+[node name="Affection" type="Node"]
+script = ExtResource("1_eojw7")

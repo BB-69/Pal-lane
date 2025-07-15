@@ -3,6 +3,7 @@ class_name ParryAction
 
 signal parry(actor)
 signal slash(actor)
+signal sound(actor, sound_name)
 func execute(actor, params = {}):
 	var collided = actor.hurt.get_overlapping_bodies()
 	var missiles: Array[ProjectileClass] = []
@@ -19,4 +20,5 @@ func execute(actor, params = {}):
 	Con.c(self, "slash", Stat.Ptc.ptcc, "_on_slash")
 	emit_signal("slash", actor)
 	disconnect("slash", Callable(Stat.Ptc.ptcc, "_on_slash"))
-	if Stat.Aud: Stat.Aud.audc._on_sound(actor, "slash")
+	Con.c(self, "sound", Stat.Aud.audc, "_on_sound")
+	emit_signal("sound", actor, "slash")

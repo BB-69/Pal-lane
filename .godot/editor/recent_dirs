@@ -1,3 +1,5 @@
+res://Scenes/EntityBase
+res://Scripts/EntityBase
 res://Scenes/Audio/Oneshot
 D:/TM Folder/Program-and-Projects/Godot/Projects/pal-lane/Exports/Web
 D:/TM Folder/Program-and-Projects/Godot/Projects/pal-lane/Exports/Windows
@@ -6,13 +8,11 @@ res://Scenes/Particle/Oneshot
 res://Scenes/Particle/Continuous
 res://Assets/FontSetting
 res://Scripts/Helper
-res://Scripts/EntityBase
 res://Scripts/Entity
 res://Scenes/Entity
 res://Resources/Projectile
 res://Resources/Action
 res://Assets/Sprite/Game/Missiles
-res://Scenes/EntityBase
 res://Scripts/Projectile
 res://Scripts/ProjectileBase
 res://Scenes/Projectile

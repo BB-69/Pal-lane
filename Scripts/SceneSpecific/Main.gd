@@ -14,6 +14,13 @@ func _ready():
 	info_label.modulate.a = 1.0
 	label_tween = fade_in(info_label, 4.0)
 
+func _process(delta: float) -> void:
+	_connect_signals()
+
+signal sound(actor, sound_name)
+func _connect_signals():
+	Con.c(self, "sound", Stat.Aud.audc, "_on_sound")
+
 var changing_scene: bool = false
 func _unhandled_input(event):
 	if Stat.loading or changing_scene: return
@@ -21,21 +28,21 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):
 		changing_scene = true
 		
-		if Stat.Aud: Stat.Aud.audc._on_sound(self, "confirm")
-		if Stat.Aud: Stat.Aud.audc._on_sound(self, "powerup-2")
+		emit_signal("sound", self, "confirm")
+		emit_signal("sound", self, "powerup-2")
 		if event.is_action_pressed("Space"):
 			info_label.text = "Press [Space] to Start"
 		label_tween.kill()
 		blink(info_label, 0.07)
 		Loader.fade_in(Loader.fade_rect, 0.7, 1)
 		await get_tree().create_timer(1.2).timeout
-		if Stat.Aud: Stat.Aud.audc._on_sound(self, "gameover")
+		emit_signal("sound", self, "gameover")
 		await Loader.change_scene("Game")
 	elif Input.is_action_just_pressed("ui_cancel"):
 		changing_scene = true
 		
-		if Stat.Aud: Stat.Aud.audc._on_sound(self, "confirm")
-		if Stat.Aud: Stat.Aud.audc._on_sound(self, "powerup-2")
+		emit_signal("sound", self, "confirm")
+		emit_signal("sound", self, "powerup-2")
 		info_label.text = "Press [Esc] to Quit"
 		label_tween.kill()
 		blink(info_label, 0.25)

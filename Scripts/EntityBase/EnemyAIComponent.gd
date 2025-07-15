@@ -19,7 +19,7 @@ func _update(delta):
 var position_threshold = 125
 var moving: bool = false
 func move():
-	if Stat.Player and Stat.Player.current_hp > 0 and char_body and !moving:
+	if Stat.Player and Stat.Player.hp.current_hp > 0 and char_body and !moving:
 		moving = true
 		set_action("Move_Left", Stat.Player.position.x < char_body.position.x - position_threshold)
 		set_action("Move_Right", Stat.Player.position.x > char_body.position.x + position_threshold)
@@ -33,7 +33,7 @@ var launching: bool = false
 var launch_timer = 0
 var launch_warmup = 0.5
 func launch(delta):
-	if Stat.Player and Stat.Player.current_hp > 0 and char_body and abs(Stat.Player.position.x - char_body.position.x) < position_threshold:
+	if Stat.Player and Stat.Player.hp.current_hp > 0 and char_body and abs(Stat.Player.position.x - char_body.position.x) < position_threshold:
 		launch_timer += delta
 		if launch_timer > launch_warmup and !launching:
 			launching = true

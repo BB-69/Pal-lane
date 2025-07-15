@@ -1,12 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://c3aah6672ic1q"]
+[gd_scene load_steps=21 format=3 uid="uid://c3aah6672ic1q"]
 
-[ext_resource type="Script" uid="uid://dkw520xjw71f7" path="res://Scripts/Entity/player.gd" id="1_re1fo"]
+[ext_resource type="Script" uid="uid://dkw520xjw71f7" path="res://Scripts/Entity/Player.gd" id="1_re1fo"]
 [ext_resource type="PackedScene" uid="uid://coj6ugnk1647e" path="res://Scenes/EntityBase/base_component.tscn" id="2_hw5wg"]
 [ext_resource type="Texture2D" uid="uid://bmxwcmb1ivxn8" path="res://Assets/Sprite/Game/Circle1.png" id="2_odi8b"]
 [ext_resource type="PackedScene" uid="uid://o8bbqfgyfauk" path="res://Scenes/EntityBase/movement_component.tscn" id="3_2roui"]
 [ext_resource type="PackedScene" uid="uid://14i6skgyucqh" path="res://Scenes/EntityBase/action_component.tscn" id="4_2roui"]
 [ext_resource type="Script" uid="uid://dq8dlxwoubotf" path="res://Scripts/ResourceTemplate/ActionData.gd" id="5_d8htt"]
 [ext_resource type="PackedScene" uid="uid://7latq412iec5" path="res://Scenes/Projectile/missile.tscn" id="6_20bu7"]
+[ext_resource type="PackedScene" uid="uid://8bgj304ytld2" path="res://Scenes/EntityBase/health_component.tscn" id="10_6r2uh"]
+[ext_resource type="Script" uid="uid://dc5j2qyfddtl7" path="res://Scripts/EntityBase/AnimatedSpriteComponent.gd" id="11_gpwe1"]
 [ext_resource type="FontFile" uid="uid://cim26588xl5xb" path="res://Assets/Font/Play-Bold.ttf" id="11_iy3c6"]
 [ext_resource type="Script" uid="uid://y2t7hdv4v11" path="res://Resources/Action/Launch.gd" id="12_u7ssx"]
 [ext_resource type="Script" uid="uid://bqcrrptceyix8" path="res://Scripts/ResourceTemplate/ProjectileStorage.gd" id="13_ejgra"]
@@ -55,12 +57,13 @@ radius = 45.0
 radius = 50.0
 height = 150.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("base", "mov", "act", "aspr", "col", "hurt") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("base", "mov", "act", "hp", "aspr", "col", "hurt") groups=["Player"]]
 collision_mask = 0
 script = ExtResource("1_re1fo")
 base = NodePath("Base")
 mov = NodePath("Movement")
 act = NodePath("Action")
+hp = NodePath("Health")
 aspr = NodePath("AnimatedSprite2D")
 col = NodePath("CollisionShape2D")
 hurt = NodePath("HurtBox")
@@ -79,9 +82,12 @@ cooldowns = Dictionary[String, float]({
 "Parry": 0.75
 })
 
+[node name="Health" parent="." instance=ExtResource("10_6r2uh")]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_hw5wg")
+script = ExtResource("11_gpwe1")
 
 [node name="Label" type="Label" parent="AnimatedSprite2D"]
 anchors_preset = 8

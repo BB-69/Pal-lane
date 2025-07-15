@@ -24,16 +24,24 @@ func _ready():
 	add_child(enemy_pooler)
 
 func _process(delta: float) -> void:
+	_connect_signals()
 	wait()
+	
 	update_health_bar()
 	update_label_text(delta)
 	
 	spawner(delta)
 
+signal sound(actor, sound_name)
+func _connect_signals():
+	Con.c(self, "sound", Stat.Aud.audc, "_on_sound")
+
+var game_started: bool = false
 var waited: bool = false
 func wait():
 	if !waited: await get_tree().create_timer(0.5).timeout
 	waited = true
+	game_started = true
 
 func spawner(delta):
 	if !Stat.Player or Stat.Player == null:
@@ -73,8 +81,8 @@ func _unhandled_input(event):
 @export var health_bar: ValueBar
 func update_health_bar():
 	if !Stat.Player: return
-	health_bar.value_current = Stat.Player.current_hp
-	health_bar.value_max = Stat.Player.max_hp
+	health_bar.value_current = Stat.Player.hp.current_hp
+	health_bar.value_max = Stat.Player.hp.max_hp
 
 var time_lapsed: float = 0.0
 @export var time_lapsed_label: Label
@@ -83,7 +91,7 @@ var time_lapsed: float = 0.0
 var total_pal: int = 0
 var total_love_missile: int = 0
 func update_label_text(delta):
-	if !Stat.Player or Stat.Enemy.is_empty(): return
+	if !Stat.Player or (Stat.Enemy.is_empty() and !game_started): return
 	
 	time_lapsed += delta
 	time_lapsed_label.text = "Time Lapsed: %s" % TimeFormat.t(time_lapsed)

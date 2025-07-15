@@ -83,8 +83,8 @@ func check_collision():
 	
 	entities.erase(actor)
 	for body in entities:
-		Con.c(self, "damage", body, "_on_damage")
-		Con.c(self, "affect", body, "_on_affect")
+		if "hp" in body: Con.c(self, "damage", body.hp, "_on_damage")
+		if "aff" in body: Con.c(self, "affect", body.aff, "_on_affect")
 	emit_signal("damage", actor, stat.damage)
 	emit_signal("affect", actor, stat.affection_point)
 	
@@ -94,7 +94,7 @@ func check_collision():
 	else:
 		Con.c(self, "fast_collision", Stat.Ptc.ptcc, "_on_fast_collision")
 		emit_signal("fast_collision", self)
-	if Stat.Aud: Stat.Aud.audc._on_sound(self, "clash")
+	emit_signal("sound", self, "clash")
 	
 	
 	Stat.Projectile.erase(base.id)
@@ -122,6 +122,6 @@ func _init_statics():
 func _update_statistics():
 	_connect_signals()
 
-var signal_connected:= false
+signal sound(actor, sound_name)
 func _connect_signals():
-	pass
+	Con.c(self, "sound", Stat.Aud.audc, "_on_sound")
