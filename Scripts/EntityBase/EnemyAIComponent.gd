@@ -16,14 +16,14 @@ func _update(delta):
 	move()
 	launch(delta)
 
-var position_threshold = 125
+var position_threshold = 1
 var moving: bool = false
 func move():
 	if Stat.Player and Stat.Player.hp.current_hp > 0 and char_body and !moving:
 		moving = true
+		await get_tree().create_timer(0.6).timeout
 		set_action("Move_Left", Stat.Player.position.x < char_body.position.x - position_threshold)
 		set_action("Move_Right", Stat.Player.position.x > char_body.position.x + position_threshold)
-		await get_tree().create_timer(0.5).timeout
 		moving = false
 	else:
 		set_action("Move_Left", false)
@@ -33,7 +33,7 @@ var launching: bool = false
 var launch_timer = 0
 var launch_warmup = 0.5
 func launch(delta):
-	if Stat.Player and Stat.Player.hp.current_hp > 0 and char_body and abs(Stat.Player.position.x - char_body.position.x) < position_threshold:
+	if Stat.Player and Stat.Player.hp.current_hp > 0 and char_body and !char_body.mov.moving:#abs(Stat.Player.position.x - char_body.position.x) < position_threshold:
 		launch_timer += delta
 		if launch_timer > launch_warmup and !launching:
 			launching = true
@@ -42,7 +42,9 @@ func launch(delta):
 			
 			char_body.act.get_action("Launch").missile_storage.total_missile[char_body.current_projectile_type] = 10
 			await get_tree().process_frame
+			await get_tree().process_frame
 			set_action("Launch", true)
+			await get_tree().process_frame
 			await get_tree().process_frame
 			set_action("Launch", false)
 			while get_tree() and !char_body.act.can_action("Launch"): await get_tree().process_frame
